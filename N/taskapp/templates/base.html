@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang='ja'>
+    <head>
+        {% load static %}
+        <link href="{% static 'css/adjustment.css' %}" rel="stylesheet" type="text/css">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>{% block title %}{% endblock %}</title>
+
+        <link href="{% static 'bootstrap/dist/css/bootstrap.css' %}" rel="stylesheet">
+        <link href="{% static 'bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet">
+        <link href="{% static 'bootstrap/dist/css/bootstrap-grid.css' %}" rel="stylesheet">
+        <link href="{% static 'bootstrap/dist/css/bootstrap-grid.min.css' %}" rel="stylesheet">
+        <link href="{% static 'bootstrap/dist/css/bootstrap-reboot.css' %}" rel="stylesheet">
+        <link href="{% static 'bootstrap/dist/css/bootstrap-reboot.min.css' %}" rel="stylesheet">
+        <link href="{% static 'bootstrap/docs/4.0/examples/dashboard/dashboard.css' %}" rel="stylesheet">
+
+        <script type="text/javascript" src="{% static 'bootstrap/assets/js/vendor/jquery-slim.min.js' %}"></script>
+
+        <script src="{% static 'bootstrap/assets/js/vendor/anchor.min.js' %}"></script>
+        <script src="{% static 'bootstrap/assets/js/vendor/clipboard.min.js' %}"></script>
+        <script src="{% static 'bootstrap/assets/js/vendor/holder.min.js' %}"></script>
+        <script src="{% static 'bootstrap/assets/js/vendor/popper.min.js' %}"></script>
+        <script src="{% static 'bootstrap/dist/js/bootstrap.bundle.js' %}"></script>
+        <script src="{% static 'bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+        <script src="{% static 'bootstrap/dist/js/bootstrap.js' %}"></script>
+        <script src="{% static 'bootstrap/dist/js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'bootstrap/js/dist/alert.js' %}"></script>
+        <script src="{% static 'bootstrap/js/dist/button.js' %}"></script>
+        <script src="{% static 'bootstrap/js/dist/carousel.js' %}"></script>
+        <script src="{% static 'bootstrap/js/dist/collapse.js' %}"></script>
+        <script src="{% static 'bootstrap/js/dist/dropdown.js' %}"></script>
+        <script src="{% static 'bootstrap/js/dist/index.js' %}"></script>
+        <script src="{% static 'bootstrap/js/dist/modal.js' %}"></script>
+        <script src="{% static 'bootstrap/js/dist/scrollspy.js' %}"></script>
+        <script src="{% static 'bootstrap/js/dist/tab.js' %}"></script>
+        <script src="{% static 'bootstrap/js/dist/tooltip.js' %}"></script>
+        <script src="{% static 'bootstrap/js/dist/util.js' %}"></script>
+    </head>
+
+    <body>
+        <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+            <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="/">TaskMan</a>
+            <div class="form-control form-control-dark w-100">{% block mainT %}{% endblock %}</div> 
+            <div class="form-control form-control-dark w-100" style="text-align: right;">{% block mainL %}{% endblock %}</div> 
+            <ul class="navbar-nav px-3">
+                <li class="nav-item text-nowrap">
+                {% block auth %}{% endblock %}
+                </li>
+            </ul>
+        </nav>
+
+        {% block body %}{% endblock %}
+
+    </body>
+</html>
