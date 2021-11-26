@@ -2,12 +2,13 @@
 <html lang='ja'>
     <head>
         {% load static %}
-        <link href="{% static 'css/adjustment.css' %}" rel="stylesheet" type="text/css">
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="">
         <meta name="author" content="">
+
+        <link rel="shortcut icon" type="image/x-icon" href="{% static 'img/c0063_6_2.png' %}">
 
         <title>{% block title %}{% endblock %}</title>
 
@@ -18,9 +19,12 @@
         <link href="{% static 'bootstrap/dist/css/bootstrap-reboot.css' %}" rel="stylesheet">
         <link href="{% static 'bootstrap/dist/css/bootstrap-reboot.min.css' %}" rel="stylesheet">
         <link href="{% static 'bootstrap/docs/4.0/examples/dashboard/dashboard.css' %}" rel="stylesheet">
-
-        <script type="text/javascript" src="{% static 'bootstrap/assets/js/vendor/jquery-slim.min.js' %}"></script>
-
+        <link href="{% static 'css/modal.css' %}" rel="stylesheet" type="text/css">
+        <link href="{% static 'css/adjustment.css' %}" rel="stylesheet" type="text/css">
+        <link href="{% static 'css/navibar.css' %}" rel="stylesheet" type="text/css">
+        <script src="{% static 'js/modal.js' %}"></script>
+        <script src="{% static 'js/masta.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
         <script src="{% static 'bootstrap/assets/js/vendor/anchor.min.js' %}"></script>
         <script src="{% static 'bootstrap/assets/js/vendor/clipboard.min.js' %}"></script>
         <script src="{% static 'bootstrap/assets/js/vendor/holder.min.js' %}"></script>
@@ -40,20 +44,45 @@
         <script src="{% static 'bootstrap/js/dist/tab.js' %}"></script>
         <script src="{% static 'bootstrap/js/dist/tooltip.js' %}"></script>
         <script src="{% static 'bootstrap/js/dist/util.js' %}"></script>
+        <script src="{% static 'js/navibar.js' %}"></script>
+
     </head>
 
     <body>
         <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
-            <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="/">TaskMan</a>
+            <a class="navbar-brand col-sm-3 col-md-2 mr-0 barbtn" href="">TaskMan</a>
             <div class="form-control form-control-dark w-100">{% block mainT %}{% endblock %}</div> 
-            <div class="form-control form-control-dark w-100" style="text-align: right;">{% block mainL %}{% endblock %}</div> 
-            <ul class="navbar-nav px-3">
-                <li class="nav-item text-nowrap">
-                {% block auth %}{% endblock %}
-                </li>
-            </ul>
+            <div class="btn-group">
+                <div class="btn dropdown-toggle naviDrop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {% if user.is_authenticated %}
+                            User : {{ user.get_username }}
+                            {% if user.icon.url != "" %}
+                                <img src="{{ user.icon.url }}" style="height: 20px; width: 20px;">
+                            {% else %}
+                                <img src="/static/img/c0063_6_2.png" style="height: 20px; width: 20px;">
+                            {% endif%}
+                        {% else %}
+                            User
+                        {% endif %}
+                </div>
+                {% if user.is_authenticated %}
+                    <div class="dropdown-menu dropdown-menu-right" >
+                    <a class="dropdown-item" href="{% url 'taskapp:profile' user.pk %}">ユーザ情報</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="/logout/">ログアウト</a>
+                    </div>
+                {% endif %}
+            </div>
         </nav>
 
+        <div class="drawr">
+            <div class="barmenu top">TaskManager</div>
+            <div class="barmenu"><a href="/">トップページ</a></div>
+            <div class="barmenu"><a href="">タスク</a></div>
+            <div class="barmenu"><a href="">ガントチャート</a></div>
+            <div class="barmenu"><a href="">チャット</a></div>
+        </div>
+      
         {% block body %}{% endblock %}
 
     </body>

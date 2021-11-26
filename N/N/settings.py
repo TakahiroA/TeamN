@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'task',
     'taskapp',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -144,3 +145,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'taskapp.User'
 
+MEDIA_URL = '/mdeia/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media') 
