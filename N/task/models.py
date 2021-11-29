@@ -59,9 +59,3 @@ class ProjectToUsers(models.Model):
         on_delete=models.CASCADE
     )
 
-""" プロジェクト To タスク （1 対 多） """
-class ProjectToTask(models.Model):
-    project_cd = models.ForeignKey(
-        Project,
-        on_delete=models.CASCADE
-    )
