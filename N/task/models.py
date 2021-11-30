@@ -1,6 +1,6 @@
 from django.db import models
 from taskapp.models import User
-
+from taskapp.models import Task
 
 """ プロジェクトモデル """
 class Project(models.Model):
@@ -56,6 +56,18 @@ class ProjectToUsers(models.Model):
 
     user_cd = models.ForeignKey(
         User,
+        on_delete=models.CASCADE
+    )
+
+""" プロジェクト To タスク （1 対 多） """
+class ProjectToTask(models.Model):
+    project_cd = models.ForeignKey(
+        Project,
+        on_delete=models.CASCADE
+    )
+
+    task_cd = models.ForeignKey(
+        Task,
         on_delete=models.CASCADE
     )
 
