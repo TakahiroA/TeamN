@@ -58,6 +58,7 @@ class ProjectToUsers(models.Model):
         User,
         on_delete=models.CASCADE
     )
+    use_cd = models.TextField()
 
 """ プロジェクト To タスク （1 対 多） """
 class ProjectToTask(models.Model):
