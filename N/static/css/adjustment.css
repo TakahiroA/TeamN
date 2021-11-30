@@ -94,3 +94,48 @@ table.no_border, .no_border thead, .no_border tbody, .no_border tr, .no_border t
 table.no_border, .no_border thead, .no_border tbody, .no_border tr, .no_border th, .no_border td{
     border: none;
 }
+
+ul, li {
+    padding: 0px;
+    margin: 0px;
+}
+
+#taskList ul li,#taskList ol li{
+    border-left: solid 8px black;/*左側の線*/
+    border-bottom: solid 2px #dadada;/*下に灰色線*/
+    background: #494949;/*背景色*/
+    margin-bottom: 5px;/*下のバーとの余白*/
+    border-radius: 15px 15px 15px 15px;
+    padding: 20px;
+    list-style-type: none!important;
+    color: white;
+    margin: 5px 50px;
+}
+
+#taskList .task5{
+    border-left: solid 8px rgb(252, 44, 44);/*左側の線*/
+}
+
+#taskList .task4{
+    border-left: solid 8px rgb(252, 255, 70);/*左側の線*/
+}
+
+#taskList .task3{
+    border-left: solid 8px rgb(85, 250, 98);/*左側の線*/
+}
+
+#taskList .task2{
+    border-left: solid 8px rgb(100, 253, 253);/*左側の線*/
+}
+
+#taskList .task1{
+    border-left: solid 8px rgb(56, 53, 255);/*左側の線*/
+}
+
+.inDetail{
+    display: none;
+}
+
+#taskAccordion li {
+    cursor: pointer;
+}
