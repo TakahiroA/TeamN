@@ -24,13 +24,13 @@ class taskTop(LoginRequiredMixin, generic.TemplateView):
     template_name = 'task/task_top.html'
     redirect_field_name = 'redirect_to'
 
-
 """ プロジェクト作成 """
 class BuildProject(LoginRequiredMixin, generic.CreateView):
     model = Project
+    template_name = 'task/build_project.html'
     form_class = ProjectCreate
     success_url ='/task/'
-    template_name = 'task/build_project.html'
+
 
     def get_initial(self): 
         leader = self.request.user.pk

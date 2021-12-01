@@ -16,9 +16,9 @@ class ProjectCreate(forms.ModelForm):
         super().__init__(*args, **kwargs)
         for field in self.fields.values():
             field.widget.attrs['class'] = 'form-control'
-        self.fields['leader'].widget.attrs['hidden'] = 'true'
-        self.fields['start_date'].widget.input_type = "date"
-        self.fields['end_date'].widget.input_type="date"
+            self.fields['leader'].widget.attrs['hidden'] = 'true'
+            self.fields['start_date'].widget.input_type = "date"
+            self.fields['end_date'].widget.input_type="date"
 
 """ プロジェクト更新 """
 class ProjectUpdate(forms.ModelForm):

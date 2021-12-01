@@ -32,7 +32,7 @@ class Top(LoginRequiredMixin, generic.TemplateView):
 class Logout(LoginRequiredMixin, LogoutView):
     template_name = 'logout.html'
 
-    """アカウント登録ページ"""
+"""アカウント登録ページ"""
 class Registration(generic.CreateView):
     model = User
     template_name = 'registration.html'
