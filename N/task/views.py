@@ -60,10 +60,9 @@ class ProjectUserOnlyMixin(UserPassesTestMixin):
 
         user = self.request.user
 
-        l_result = Project.objects.filter(leader=user.use_cd, project_cd=self.kwargs["pk"])
+        l_result = Project.objects.filter(leader=user.pk, project_cd=self.kwargs["pk"])
         m_result = ProjectToUsers.objects.filter(project_cd=self.kwargs["pk"], user_cd=self.request.user.pk)
         p_result = Project.objects.filter(project_cd=self.kwargs["pk"], is_delete=0)
-
         if len(l_result) == 0 and len(m_result) == 0:
             is_return = False
 
@@ -79,7 +78,7 @@ class ProjectPage(ProjectUserOnlyMixin, generic.TemplateView):
     def get_context_data(self, **kwargs):
         user = self.request.user
         context = super().get_context_data(**kwargs)
-
+        
         project = Project.objects.filter(project_cd=self.kwargs["pk"])
         p_user = ProjectToUsers.objects.filter(project_cd=self.kwargs["pk"])
 
@@ -105,7 +104,7 @@ class ProjectLeaderOnlyMixin(UserPassesTestMixin):
 
         user = self.request.user
 
-        l_result = Project.objects.filter(leader=user.use_cd, project_cd=self.kwargs["pk"])
+        l_result = Project.objects.filter(leader=user.pk, project_cd=self.kwargs["pk"])
         p_result = Project.objects.filter(project_cd=self.kwargs["pk"], is_delete=0)
 
         if len(l_result) == 0:

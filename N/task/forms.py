@@ -1,5 +1,6 @@
 from django import forms
 from .models import Project, ProjectToUsers
+from taskapp.forms import User
 
 """ プロジェクト作成 """
 class ProjectCreate(forms.ModelForm):
