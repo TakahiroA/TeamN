@@ -81,25 +81,3 @@ class PasswordChangeComplete(UserOnlyMixin, PasswordChangeDoneView):
     template_name = 'password_change_complete.html'
 
 """ トップページ """
-class taskTop(LoginRequiredMixin, generic.TemplateView):
-    template_name = 'task/task_top.html'
-    redirect_field_name = 'redirect_to'
-
-    def get_context_data(self, **kwargs):
-        user = self.request.user
-        context = super().get_context_data(**kwargs)
-
-        project_user = ProjectToUsers.objects.filter(user_cd=user.use_cd)
-        leader = Project.objects.filter(leader=user.use_cd, is_delete=0)
-
-        if len(project_user) > 0:
-            context['member'] = []
-            for person in project_user:
-                member = Project.objects.filter(project_cd=person.project_cd.pk, is_delete=0)
-                context['member'].extend(member)
-        else:
-            context['member'] = None
-
-        context['leader'] = leader if len(leader) > 0 else None
-
-        return context

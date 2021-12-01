@@ -25,8 +25,8 @@ class taskTop(LoginRequiredMixin, generic.TemplateView):
         user = self.request.user
         context = super().get_context_data(**kwargs)
 
-        project_user = ProjectToUsers.objects.filter(user_cd=user.use_cd)
-        leader = Project.objects.filter(leader=user.use_cd, is_delete=0)
+        project_user = ProjectToUsers.objects.filter(user_cd=user.pk)
+        leader = Project.objects.filter(leader=user.pk, is_delete=0)
 
         if len(project_user) > 0:
             context['member'] = []

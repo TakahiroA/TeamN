@@ -78,9 +78,9 @@
         <div class="drawr">
             <div class="barmenu top">TaskManager</div>
             <div class="barmenu"><a href="/">トップページ</a></div>
-            <div class="barmenu"><a href="">タスク</a></div>
-            <div class="barmenu"><a href="">ガントチャート</a></div>
-            <div class="barmenu"><a href="">チャット</a></div>
+            <div class="barmenu"><a href="{% url 'task:task_top' %}">タスク</a></div>
+            <div class="barmenu"><a href="#">ガントチャート</a></div>
+            <div class="barmenu"><a href="#">チャット</a></div>
         </div>
       
         {% block body %}{% endblock %}
