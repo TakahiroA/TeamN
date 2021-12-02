@@ -22,6 +22,8 @@
         <link href="{% static 'css/modal.css' %}" rel="stylesheet" type="text/css">
         <link href="{% static 'css/adjustment.css' %}" rel="stylesheet" type="text/css">
         <link href="{% static 'css/navibar.css' %}" rel="stylesheet" type="text/css">
+        <link href="{% static 'css/slider.css' %}" rel="stylesheet" type="text/css">
+        <script src="{% static 'js/ajax.js' %}"></script>
         <script src="{% static 'js/modal.js' %}"></script>
         <script src="{% static 'js/masta.js' %}"></script>
         <script type="text/javascript" src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
@@ -45,8 +47,6 @@
         <script src="{% static 'bootstrap/js/dist/tooltip.js' %}"></script>
         <script src="{% static 'bootstrap/js/dist/util.js' %}"></script>
         <script src="{% static 'js/navibar.js' %}"></script>
-        <link href="{% static 'css/slider.css' %}" rel="stylesheet" type="text/css">
-        <script src="{% static 'js/ajax.js' %}"></script>
 
     </head>
 
@@ -80,9 +80,9 @@
         <div class="drawr">
             <div class="barmenu top">TaskManager</div>
             <div class="barmenu"><a href="/">トップページ</a></div>
-            <div class="barmenu"><a href="/task">タスク</a></div>
-            <div class="barmenu"><a href="">ガントチャート</a></div>
-            <div class="barmenu"><a href="">チャット</a></div>
+            <div class="barmenu"><a href="{% url 'task:task_top' %}">タスク</a></div>
+            <div class="barmenu"><a href="#">ガントチャート</a></div>
+            <div class="barmenu"><a href="#">チャット</a></div>
         </div>
       
         {% block body %}{% endblock %}
