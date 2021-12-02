@@ -11,6 +11,10 @@ from .forms import ProjectCreate
 from .forms import ProjectUpdate
 from .forms import ProjectDelete
 from .forms import AddProjectMember
+from django.http.response import JsonResponse
+from django.core import serializers
+from .models import ProjectToUsers, Project, ProjectToTask, Task
+from django.views.decorators.csrf import csrf_exempt 
 
 
 User = get_user_model()
@@ -217,3 +221,123 @@ class ProjectDeleteMember(ProjectLeaderOnlyMixin, generic.DeleteView):
             ProjectToUsers.objects.filter(id__in=delete_ids).delete()
 
         return redirect('task:update_member', pk=self.kwargs["pk"])
+    
+
+""" タスク追加 """
+class AddTaskForAjax():
+
+    def ajax_response(self, *args, **kwargs):
+        taskName = self.POST.get('taskName')
+
+        if self.POST.get('user') != "":
+            user = self.POST.get('user')
+        else:
+            user = None
+
+        if user == None:
+            userName = self.POST.get('userName') if self.POST.get('userName') != "" else None
+        else:
+            userName = None
+
+        details = self.POST.get('details') if self.POST.get('details') != "" else None
+        startDate = self.POST.get('startDate') if self.POST.get('startDate') != "" else None
+        endDate = self.POST.get('endDate') if self.POST.get('endDate') != "" else None
+        priolity = self.POST.get('priolity') if self.POST.get('priolity') != "" else None
+
+        task = Task.objects.create(
+            task_name=taskName, user=user,
+            user_name=userName, details=details,
+            start_date=startDate, end_date=endDate,
+            priolity=priolity
+        )
+
+        projectCd = kwargs['pk']
+
+        project = Project.objects.get(project_cd=projectCd)
+
+        result = ProjectToTask.objects.create(
+            project_cd=project, task_cd=task
+        )
+
+        projectTask = ManupilateDataBase.getProjectTask(projectCd)
+
+        json_serializer = serializers.get_serializer("json")()
+        taskData = json_serializer.serialize(projectTask, ensure_ascii=False)
+
+        return JsonResponse({"taskdata" : taskData})
+
+
+""" DB操作クラス """
+class ManupilateDataBase():
+
+    def getJoinProject(joinCd):
+        p_user = ProjectToUsers.objects.filter(user_cd=joinCd)
+
+        if len(p_user) > 0:
+            result = []
+            for p in p_user:
+                member = Project.objects.filter(project_cd=p.project_cd.pk, is_delete=0)
+                result.extend(member)
+        else:
+            result = None
+
+        return result
+
+    def getProjectTask(projectCd):
+        p_task = ProjectToTask.objects.filter(project_cd=projectCd)
+
+        if len(p_task) > 0:
+            result = []
+            for t in p_task:
+                task = Task.objects.filter(pk=t.task_cd.pk)
+                result.extend(task)
+        else:
+            result = None
+
+        return result
+
+    def getProjectMenber(memberCd):
+        p_user = ProjectToUsers.objects.filter(project_cd=memberCd)
+
+        if len(p_user) > 0:
+            result = []
+            for person in p_user:
+                member = User.objects.filter(pk=person.user_cd.pk)
+                result.extend(member)
+        else:
+            result = None
+
+        return result
+
+    def getTaskInfo(taskCd):
+        task = Task.objects.filter(task_cd=taskCd)
+
+        if len(task) > 0:
+            return task
+        else:
+            return None
+
+    def getUserInfo(userCd):
+        user = User.objects.filter(use_cd=userCd)
+
+        if len(user) > 0:
+            return user
+        else:
+            return None
+
+""" プロジェクトタスク情報取得 """
+class getProjectTaskInfoAjax():
+
+    @csrf_exempt 
+    def ajax_response(self, *args, **kwargs):
+        task_cd = self.POST['task_cd']
+
+        projectTask = ManupilateDataBase.getTaskInfo(task_cd)
+
+        if (projectTask[0].user != None):
+            projectTask[0].user_name = projectTask[0].user.username
+
+        json_serializer = serializers.get_serializer("json")()
+        taskData = json_serializer.serialize(projectTask, ensure_ascii=False)
+
+        return JsonResponse({"taskdata" : taskData})

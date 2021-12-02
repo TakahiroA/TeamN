@@ -7,3 +7,5 @@ class User(AbstractUser, models.Model):
         verbose_name='アイコン',
         blank=True,
     )
+
+

@@ -79,5 +79,3 @@ class PasswordChange(UserOnlyMixin, PasswordChangeView):
 """ パスワード変更完了 """
 class PasswordChangeComplete(UserOnlyMixin, PasswordChangeDoneView):
     template_name = 'password_change_complete.html'
-
-""" トップページ """

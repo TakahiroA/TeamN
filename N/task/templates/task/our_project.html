@@ -6,7 +6,7 @@
 <nav class=" navbar-dark bg-dark flex-md-nowrap p-0 header">
     <a class="navbar-brand col-md-1 mr-0" href="/task/">戻る</a>
     <a  class="navbar-brand col-md-2 mr-0" href="{% url 'task:our_project_detail' project.0.pk %}"> プロジェクト詳細 </a>
-    <a class="navbar-brand col-md-2 mr-0" href="#">タスク追加</a>
+    <a class="navbar-brand col-md-2 mr-0" href="{% url 'task:add_task' project.0.pk %}">タスク追加</a>
     <div class="btn-group">
         <div class="btn dropdown-toggle naviDrop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             メンバー
@@ -25,8 +25,77 @@
 </nav>
 
 {% if task == None %}
-<div style="margin:20px"></div>
-    <h4>タスクがありません</h4>
+<div id="taskList">
+    {% if task == None %}
+        <ul>
+            <li>タスクがありません</li>        
+        </ul>
+    {% else %}
+        <ul id="taskAccordion">
+            {% for content in task %}
+
+                <li class="selectTask task{{content.priolity}}" value="{{content.task_cd}}"> {{content.task_name}} </li> 
+            {% endfor %}
+        </ul>
+    {% endif %}
+
 </div>
+
+<div id="modal-task-add">
+    <h4>追加タスク</h4>
+    <form name="addTask" method="POST" action="{% url 'task:add_task' project.0.pk %}">
+        <table class="table">
+            <tr>
+                <th>タスク名</th>
+                <td><input type="text" name="taskName" style="width:80%;"></td>
+            </tr>
+            <tr>
+                <th>担当</th>
+                <td>
+                    <select name="user" id="selectC" style="width:80%;">
+                        <option value="">---</option>
+                        <option value={{ project.0.leader.pk }}>{{ project.0.leader }}</option>
+                        {% for person in member %}
+                            <option value={{ person.pk }}>{{ person }}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th></th>
+                <td><input type="text" id="writeCN" name="userName" style="width:80%;"></td>
+            </tr>
+            <tr>
+                <th>詳細</th>
+                <td><textarea name="details" rows="4" cols="50" style="width:80%;"></textarea></td>
+            </tr>
+            <tr>
+                <th>開始日</th>
+                <td>
+                    <input type="date" name="startDate" style="width: 80%;">
+                </td>
+            </tr>
+            <tr>
+                <th>終了日</th>
+                <td>
+                    <input type="date" name="endDate" style="width: 80%;">
+                </td>
+            </tr>
+            <tr>
+                <th>優先度</th>
+                <td>
+                    <input type="range" name="priolity" min="1" max="5" value="3" style="width: 80%;"> &emsp; <span id="priolityNo" style="font-size:14px;">3</span>
+                    <br>
+                    <p>数値が大きいほど優先度が高いです</p>
+                </td>
+            </tr>
+        </table>
+        {% csrf_token %}
+    </form>
+    <button type="button" id="CTBC" class="btn btn-primary" style="margin-right:10px;">キャンセル</button>
+    <button type="button" id="TaskAddAjax" class="btn btn-success" id="addTask">追加</button>
+</div>
+<div id="modal-task-details"></div>
+<button type="button" id="TDI" style="display:none;"></button>
 {% endif %}
 {% endblock %}
