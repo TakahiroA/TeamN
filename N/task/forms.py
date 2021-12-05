@@ -85,7 +85,8 @@ class AddProjectMember(forms.ModelForm):
 
         for non in non_active:
             where.append(non.pk)
+            user = self.request.user
 
-        result = User.objects.exclude(use_cd__in=where)
+        result = User.objects.exclude()
 
         self.fields['user_cd'].queryset = result

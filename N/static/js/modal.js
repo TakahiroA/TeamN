@@ -1,17 +1,17 @@
-// タスク詳細モーダル管理
+// メンバー追加モーダル管理
 $(function () {
 
     //追加ボタンを押した際
-    $('#TDI').click(function () {
+    $('#AMB').click(function () {
         //背景を付ける
-        $("body").append('<div id="modal-bg"></div>');
+        $("body").append('<div class="modal-bg"></div>');
 
         //モーダルウィンドウを表示
-        $("#modal-bg,#modal-task-details").fadeIn("fast");
+        $("#modal-bg,#modal-member").fadeIn("fast");
 
         //画面の背景もしくは戻るボタンを押したらモーダルを閉じる
-        $('#modal-bg, #CTDI').click(function () {
-            $("#modal-bg,#modal-task-details").fadeOut("fast", function () {
+        $('#modal-bg, #AMCB').click(function () {
+            $("#modal-bg,#modal-member").fadeOut("fast", function () {
                 $('#modal-bg').remove();
             });
         });
