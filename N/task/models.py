@@ -1,7 +1,6 @@
 from django.db import models
 from taskapp.models import User
 
-
 """ プロジェクトモデル """
 class Project(models.Model):
     project_cd = models.AutoField(
@@ -47,17 +46,6 @@ class Project(models.Model):
         default=False
     )
     
-""" プロジェクト To ユーザ （1 対 多） """
-class ProjectToUsers(models.Model):
-    project_cd = models.ForeignKey(
-        Project,
-        on_delete=models.CASCADE
-    )
-
-    user_cd = models.ForeignKey(
-        User,
-        on_delete=models.CASCADE
-    )
 
 
 class Task(models.Model):
@@ -126,6 +114,18 @@ class Task(models.Model):
         default=False
     )
 
+""" プロジェクト To ユーザ （1 対 多） """
+class ProjectToUsers(models.Model):
+    project_cd = models.ForeignKey(
+        Project,
+        on_delete=models.CASCADE
+    )
+
+    user_cd = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE
+    )
+
 """ プロジェクト To タスク （1 対 多） """
 class ProjectToTask(models.Model):
     project_cd = models.ForeignKey(
@@ -137,3 +137,4 @@ class ProjectToTask(models.Model):
         Task,
         on_delete=models.CASCADE
     )
+    

@@ -46,7 +46,7 @@
     overflow:auto;
 }
 
-#modal-task-add, #modal-task-details{
+#modal-task-add,#modal-task-details{
     display: none;
     width: 50%;
     height: 100%;

@@ -41,7 +41,7 @@
             </tbody>
         </table>
         <a href="{% url 'task:our_project_detail' project.0.pk %}" class="btn btn-primary MD">戻る</a>
-        <a class="btn btn-primary MD" style="color: white;" id="AMB">メンバー追加</a>
+        <a class="btn btn-primary MD AMB" style="color: white;"">メンバー追加</a>
         {% if member != None and user == project.0.leader %}
             <a class="btn btn-primary MD MDB" style="color:white; margin-left: 10px;">メンバー退席</a>
             <a class="btn btn-primary MDC MDCB" style="color:white; margin-left: 10px;">キャンセル</a>
@@ -51,7 +51,7 @@
     </form>
 </div>
 
-<div id="modal-member">
+<div>
     <form action="" method="POST">
         {{ form.non_field_errors }}
         {% for field in form %}
@@ -68,4 +68,5 @@
         <a class="btn btn-primary btn-lg" style="color: white;" id="AMCB">戻る</a>
     </form>
 </div>
+
 {% endblock %}

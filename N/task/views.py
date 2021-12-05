@@ -227,7 +227,7 @@ class ProjectDeleteMember(ProjectLeaderOnlyMixin, generic.DeleteView):
 class AddTaskForAjax():
 
     def ajax_response(self, *args, **kwargs):
-        taskName = self.POST.get('taskName')
+        taskName = 'sample'
 
         if self.POST.get('user') != "":
             user = self.POST.get('user')
@@ -242,7 +242,7 @@ class AddTaskForAjax():
         details = self.POST.get('details') if self.POST.get('details') != "" else None
         startDate = self.POST.get('startDate') if self.POST.get('startDate') != "" else None
         endDate = self.POST.get('endDate') if self.POST.get('endDate') != "" else None
-        priolity = self.POST.get('priolity') if self.POST.get('priolity') != "" else None
+        priolity = '1'
 
         task = Task.objects.create(
             task_name=taskName, user=user,
@@ -251,20 +251,19 @@ class AddTaskForAjax():
             priolity=priolity
         )
 
-        projectCd = kwargs['pk']
-
+        projectCd = Project.objects.filter(project_cd=self.kwargs['pk'])
         project = Project.objects.get(project_cd=projectCd)
 
         result = ProjectToTask.objects.create(
             project_cd=project, task_cd=task
-        )
+        )   
 
         projectTask = ManupilateDataBase.getProjectTask(projectCd)
-
         json_serializer = serializers.get_serializer("json")()
         taskData = json_serializer.serialize(projectTask, ensure_ascii=False)
 
         return JsonResponse({"taskdata" : taskData})
+        
 
 
 """ DB操作クラス """
