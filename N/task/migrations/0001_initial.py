@@ -18,13 +18,13 @@ class Migration(migrations.Migration):
             name='Project',
             fields=[
                 ('project_cd', models.AutoField(primary_key=True, serialize=False)),
-                ('name', models.CharField(max_length=25, verbose_name='プロジェクト名')),
+                ('name', models.CharField(max_length=25, verbose_name='課題名')),
                 ('start_date', models.DateField(blank=True, null=True, verbose_name='開始日')),
-                ('end_date', models.DateField(blank=True, null=True, verbose_name='終了日')),
+                ('end_date', models.DateField(blank=True, null=True, verbose_name='期限')),
                 ('details', models.CharField(blank=True, max_length=200, null=True, verbose_name='詳細')),
                 ('update_date', models.DateField(auto_now=True)),
                 ('is_delete', models.BooleanField(default=False)),
-                ('leader', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='leader', to=settings.AUTH_USER_MODEL, verbose_name='プロジェクトリーダ')),
+                ('leader', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='leader', to=settings.AUTH_USER_MODEL, verbose_name='科目名')),
             ],
         ),
         migrations.CreateModel(
