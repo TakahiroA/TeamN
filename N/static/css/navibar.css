@@ -6,7 +6,7 @@
 /*左の背景*/
 .drawr {
     display: none;
-    background-color:#F4F8FA;
+    background-color:rgba(195,221,235, 0.95);
     position: absolute;
     top: 0px;
     left:0;
@@ -18,20 +18,18 @@
 /*左の背景の長さ*/
 .barmenu{
     width:220px;
-    height:50px;
+    height:100px;
     margin-top:10px;
 }
 
 .barmenu a{
     position: relative;
     display: block;
-    font-weight: bold;
     text-decoration: none;
     color: rgb(0, 0, 0);
     text-shadow: 0 0 5px rgba(255, 255, 255, 0.0);
     transition: .2s;
 }
-
 .barmenu a:hover {
     text-shadow: -6px 0px 15px rgba(0, 0, 0, 0.83), 6px 0px 15px rgba(255, 255, 240, 0.83);
     transition: .2s;
