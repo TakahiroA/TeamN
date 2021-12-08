@@ -103,3 +103,4 @@ class MonthWithScheduleMixin(MonthCalendarMixin):
             month_days
         )
         return calendar_context
+        
