@@ -31,6 +31,12 @@ class Project(models.Model):
         verbose_name='期限'
     )
 
+    now_date = models.DateField(
+        null=True,
+        blank=True,
+        verbose_name='今の日付'
+    )
+
    
     details = models.CharField(
         max_length=200,
