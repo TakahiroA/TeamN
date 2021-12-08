@@ -49,14 +49,13 @@
         <script src="{% static 'js/masta.js' %}"></script>
         <script src="{% static 'js/navibar.js' %}"></script>
         
-        <title>カレンダー</title>
     </head>
 
     <body>
-        <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+        <nav class="navbar navbar-dark sticky-top bg-light flex-md-nowrap p-0">
             
-            <a class="navbar-brand col-sm-3 col-md-2 mr-0 barbtn" href="">TaskMan</a>
-            <div class="form-control form-control-dark w-100">{% block mainT %}{% endblock %}</div> 
+            <a class="navbar-brand col-sm-3 col-md-2 mr-0 barbtn text-dark bg-info" href="">{{ user.get_username }}　R4</a>
+            <div class="form-control form-control-dark w-100 text-dark">{% block mainT %}{% endblock %}</div>
             <div class="btn-group">
                 <div class="btn dropdown-toggle naviDrop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {% if user.is_authenticated %}
@@ -82,10 +81,10 @@
 
         <div class="drawr">
             <div class="barmenu top">TaskManager</div>
-            <div class="barmenu"><a href="/">トップページ</a></div>
-            <div class="barmenu"><a href="{% url 'task:task_top' %}">タスク</a></div>
-            <div class="barmenu"><a href="#">ガントチャート</a></div>
-            <div class="barmenu"><a href="#">チャット</a></div>
+            <div class="barmenu"><a href="/"> <img src="/static/img/ホーム.png" style="height: 25px; width: 25px;">　トップページ</a></div>
+            <div class="barmenu"><a href="{% url 'task:task_top' %}"><img src="/static/img/課題.png" style="height: 25px; width: 25px;">　タスク</a></div>
+            <div class="barmenu"><a href="#"><img src="/static/img/課題２.png" style="height: 25px; width: 25px;">　科目</a></div>
+            <div class="barmenu"><a href="#"><img src="/static/img/設定.png" style="height: 25px; width: 25px;">　設定</a></div>
         </div>
       
         {% block body %}{% endblock %}

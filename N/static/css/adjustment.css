@@ -3,8 +3,9 @@
     text-align: center;
 }
 
+/*右上*/
 .naviDrop {
-    color:white;
+    color:black;
     margin-right:20px;
     width:200px;
 }
