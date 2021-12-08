@@ -2,6 +2,8 @@
 .peke {
     background-position: -35px 0;
 }
+
+/*左の背景*/
 .drawr {
     display: none;
     background-color:#F4F8FA;
@@ -13,6 +15,7 @@
     z-index: 100;
 }
 
+/*左の背景の長さ*/
 .barmenu{
     width:220px;
     height:50px;
@@ -30,7 +33,7 @@
 }
 
 .barmenu a:hover {
-    text-shadow: -6px 0px 15px rgba(255, 255, 240, 0.83), 6px 0px 15px rgba(255, 255, 240, 0.83);
+    text-shadow: -6px 0px 15px rgba(0, 0, 0, 0.83), 6px 0px 15px rgba(255, 255, 240, 0.83);
     transition: .2s;
 }
 
@@ -40,7 +43,7 @@
     display: block;
     font-weight: bold;
     text-decoration: none;
-    color: #FFF;
+    color: rgb(0, 0, 0);
     text-shadow: -6px 0px 15px rgba(5, 51, 255, 0.83), 6px 0px 15px rgba(255, 255, 240, 0.83);
     height: 100px;
 }

@@ -49,14 +49,13 @@
         <script src="{% static 'js/masta.js' %}"></script>
         <script src="{% static 'js/navibar.js' %}"></script>
         
-        <title>カレンダー</title>
     </head>
 
     <body>
-        <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+        <nav class="navbar navbar-dark sticky-top bg-light blue flex-md-nowrap p-0">
             
-            <a class="navbar-brand col-sm-3 col-md-2 mr-0 barbtn" href="">TaskMan</a>
-            <div class="form-control form-control-dark w-100">{% block mainT %}{% endblock %}</div> 
+            <a class="navbar-brand col-sm-3 col-md-2 mr-0 barbtn" href="">{{ user.get_username }}　R4</a>
+            <div class="form-control form-control-dark w-100 ">{% block mainT %}{% endblock %}</div>
             <div class="btn-group">
                 <div class="btn dropdown-toggle naviDrop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {% if user.is_authenticated %}
