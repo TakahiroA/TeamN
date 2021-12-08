@@ -24,6 +24,13 @@
     </div>
 </nav>
 
+<!--切り替え用ボタン-->
+<div class="text-center">
+    <button type="button" class=" btn text-dark w-25 mr-3" style="background-color: rgb(195,221,235);">期限内未提出</button>
+    <button type="button" class="btn text-dark w-25" style="background-color: rgb(244,248,250)">期限切れ未提出</button>
+</div>
+
+
 {% if task == None %}
 <div id="taskList">
     {% if task == None %}
