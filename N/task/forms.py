@@ -10,7 +10,7 @@ class ProjectCreate(forms.ModelForm):
         fields = (
             'name', 'leader',
             'start_date', 'end_date',
-            'details'
+            'details','url',
         )
 
     def __init__(self, *args, **kwargs):
@@ -90,3 +90,4 @@ class AddProjectMember(forms.ModelForm):
         result = User.objects.exclude()
 
         self.fields['user_cd'].queryset = result
+

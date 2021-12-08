@@ -4,7 +4,7 @@
 }
 .drawr {
     display: none;
-    background-color:rgba(0, 0, 0, 0.404);
+    background-color:#F4F8FA;
     position: absolute;
     top: 0px;
     left:0;
@@ -24,7 +24,7 @@
     display: block;
     font-weight: bold;
     text-decoration: none;
-    color: #FFF;
+    color: rgb(0, 0, 0);
     text-shadow: 0 0 5px rgba(255, 255, 255, 0.0);
     transition: .2s;
 }
@@ -41,6 +41,6 @@
     font-weight: bold;
     text-decoration: none;
     color: #FFF;
-    text-shadow: -6px 0px 15px rgba(5, 51, 255, 0.83), 6px 0px 15px rgba(255, 255, 240, 0.83);
+    text-shadow: -6px 0px 15px rgba(12, 16, 20, 0.83), 6px 0px 15px rgba(255, 255, 240, 0.83);
     height: 100px;
 }
