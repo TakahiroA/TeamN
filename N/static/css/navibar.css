@@ -43,7 +43,12 @@
     display: block;
     font-weight: bold;
     text-decoration: none;
+<<<<<<< HEAD
     color: rgb(0, 0, 0);
     text-shadow: -6px 0px 15px rgba(5, 51, 255, 0.83), 6px 0px 15px rgba(255, 255, 240, 0.83);
+=======
+    color: #FFF;
+    text-shadow: -6px 0px 15px rgba(12, 16, 20, 0.83), 6px 0px 15px rgba(255, 255, 240, 0.83);
+>>>>>>> 9576f60f20a96bee390dc07db6fa55c736e93b00
     height: 100px;
 }
