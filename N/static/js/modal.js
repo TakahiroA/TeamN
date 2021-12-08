@@ -1,9 +1,9 @@
 // メンバー追加モーダル管理
 $(function () {
-
-    //追加ボタンを押した際
-    $('#AMB').click(function () {
+  //追加ボタンを押した際
+    $('.AMB').click(function () {
         //背景を付ける
+        
         $("body").append('<div class="modal-bg"></div>');
 
         //モーダルウィンドウを表示
@@ -13,6 +13,7 @@ $(function () {
         $('#modal-bg, #AMCB').click(function () {
             $("#modal-bg,#modal-member").fadeOut("fast", function () {
                 $('#modal-bg').remove();
+                
             });
         });
     });

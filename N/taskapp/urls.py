@@ -4,7 +4,9 @@ from . import views
 app_name = 'taskapp'
 
 urlpatterns = [
-    path('', views.Top.as_view(), name='top'),
+    path('',views.MonthWithScheduleCalendar.as_view(), name='month_with_schedule'),
+    path( 'month_with_schedule/', views.MonthWithScheduleCalendar.as_view(), name='month_with_schedule'),
+    path('month_with_schedule/<int:year>/<int:month>/',views.MonthWithScheduleCalendar.as_view(), name='month_with_schedule'),
     path('login/', views.Login.as_view(), name='login'),
     path('logout/', views.Logout.as_view(), name='logout'),
     path('registration/', views.Registration.as_view(), name='registration'),
