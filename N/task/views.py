@@ -15,7 +15,7 @@ from django.http.response import JsonResponse
 from django.core import serializers
 from .models import ProjectToUsers, Project, ProjectToTask, Task
 from django.views.decorators.csrf import csrf_exempt 
-
+import datetime
 
 User = get_user_model()
 
@@ -31,6 +31,9 @@ class taskTop(LoginRequiredMixin, generic.TemplateView):
 
         project_user = ProjectToUsers.objects.filter(user_cd=user.pk)
         leader = Project.objects.filter(leader=user.pk, is_delete=0)
+        now_data = datetime.date.today()
+        context["td_data"] = now_data
+
 
         if len(project_user) > 0:
             context['member'] = []
