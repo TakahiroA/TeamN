@@ -51,6 +51,13 @@ class Project(models.Model):
         blank=True,
         verbose_name='URL'
     )
+
+    kamoku = models.CharField(
+        max_length=200,
+        null=True,
+        blank=True,
+        verbose_name='科目名'
+    )
    
 
     update_date = models.DateField(

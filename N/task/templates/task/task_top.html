@@ -8,7 +8,7 @@
         {% if leader != None %}
             {% for lead in leader %}
                 {% if td_data < lead.end_date %}
-                    <a class="project_area" href="{% url 'task:our_project_detail' lead.pk %}">
+                    <a class="project_area" href="{% url 'task:our_project' lead.pk %}">
                         <div>
                             <h4>{{lead.name}}</h4>
                             <p>科目名 : {{lead.leader}}</p>
@@ -21,7 +21,7 @@
                             {% if lead.details != None %}
                                 <p>詳細 : {{lead.details}}</p>
                             {% endif %}
-                            {% if lead.details != None %}
+                            {% if lead.url != None %}
                                 <p>URL : {{lead.url}}</p>
                             {% endif %}
                         </div>
@@ -51,7 +51,7 @@
                             {% if lead.details != None %}
                                 <p>詳細 : {{lead.details}}</p>
                             {% endif %}
-                            {% if lead.details != None %}
+                            {% if lead.url != None %}
                                 <p>URL : {{lead.url}}</p>
                             {% endif %}
                         </div>
