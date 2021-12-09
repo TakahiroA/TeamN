@@ -12,6 +12,9 @@
                         <div>
                             <h4>{{lead.name}}</h4>
                             <p>科目名 : {{lead.leader}}</p>
+                            {% if lead.now_date != None %}
+                                <p>今の日付 : {{lead.now_date}}</p>
+                            {% endif %}
                             {% if lead.start_date != None %}
                                 <p>開始日 : {{lead.start_date}}</p>
                             {% endif %}
@@ -42,6 +45,9 @@
                         <div>
                             <h4>{{lead.name}}</h4>
                             <p>科目名 : {{lead.leader}}</p>
+                            {% if lead.now_date != None %}
+                                <p>今の日付 : {{lead.now_date}}</p>
+                            {% endif %}
                             {% if lead.start_date != None %}
                                 <p>開始日 : {{lead.start_date}}</p>
                             {% endif %}
