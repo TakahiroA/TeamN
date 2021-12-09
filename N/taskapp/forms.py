@@ -23,8 +23,10 @@ class RegistrationForm(UserCreationForm):
     class Meta:
         model = User
         fields = (
+            'id',
             'username', 'email',
             'password1', 'password2',
+            'last_name', 'first_name',
         )
 
     def __init__(self, *args, **kwargs):
