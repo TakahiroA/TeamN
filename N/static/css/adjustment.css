@@ -3,8 +3,9 @@
     text-align: center;
 }
 
+/*右上*/
 .naviDrop {
-    color:white;
+    color:black;
     margin-right:20px;
     width:200px;
 }
@@ -100,16 +101,23 @@ ul, li {
     margin: 0px;
 }
 
+.aaaaaa{
+    padding: auto;
+    margin-top: auto;
+    width: 10%;
+    height: 10%;
+}
+
+
 #taskList ul li,#taskList ol li{
-    border-left: solid 8px black;/*左側の線*/
-    border-bottom: solid 2px #dadada;/*下に灰色線*/
-    background: #494949;/*背景色*/
+    border: solid 2px #C3DDEB;/*枠線*/
+    background: #F4F8FA;/*背景色*/
     margin-bottom: 5px;/*下のバーとの余白*/
     border-radius: 15px 15px 15px 15px;
     padding: 20px;
     list-style-type: none!important;
-    color: white;
-    margin: 5px 50px;
+    color: black;
+    margin: 20px 50px;
 }
 
 #taskList .task5{

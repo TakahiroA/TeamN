@@ -9,14 +9,14 @@ class Project(models.Model):
 
     name = models.CharField(
         max_length=25,
-        verbose_name='プロジェクト名'
+        verbose_name='課題名'
     )
 
     leader = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
         related_name='leader',
-        verbose_name='プロジェクトリーダ'
+        verbose_name='科目名'
     )
 
     start_date = models.DateField(
@@ -28,15 +28,37 @@ class Project(models.Model):
     end_date = models.DateField(
         null=True,
         blank=True,
-        verbose_name='終了日'
+        verbose_name='期限'
     )
 
+    now_date = models.DateField(
+        null=True,
+        blank=True,
+        verbose_name='今の日付'
+    )
+
+   
     details = models.CharField(
         max_length=200,
         null=True,
         blank=True,
         verbose_name='詳細'
     )
+
+    url = models.CharField(
+        max_length=200,
+        null=True,
+        blank=True,
+        verbose_name='URL'
+    )
+
+    kamoku = models.CharField(
+        max_length=200,
+        null=True,
+        blank=True,
+        verbose_name='科目名'
+    )
+   
 
     update_date = models.DateField(
         auto_now=True
@@ -91,7 +113,7 @@ class Task(models.Model):
     end_date = models.DateField(
         null=True,
         blank=True,
-        verbose_name='終了日'
+        verbose_name='期限'
     )
 
     details = models.CharField(
