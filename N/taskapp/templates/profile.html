@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 {% block title %} TaskMan {% endblock %}
-{% block mainT %} アカウント情報 {% endblock %}
+{% block mainT %} 設定 {% endblock %}
 {% block body %}
 <div style="margin:20px">
     <div class="icon">
         {% if user.icon.url != "" %}
             <img src="{{ user.icon.url }}" style="height: 100px; width: 100px;">
         {% else %}
-            <img src="/static/img/c0063_6_2.png" style="height: 50px; width: 50px;">
+            <img src="/static/img/デフォルト.png" style="height: 50px; width: 50px;">
         {% endif%}
     </div>
     <table class="table">
