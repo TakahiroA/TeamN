@@ -12,6 +12,7 @@ class ProjectCreate(forms.ModelForm):
             'start_date', 'end_date',
             'details','url',
         )
+    
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -20,6 +21,7 @@ class ProjectCreate(forms.ModelForm):
         self.fields['leader'].widget.attrs['hidden'] = 'true'
         self.fields['start_date'].widget.input_type = "date"
         self.fields['end_date'].widget.input_type="date"
+        self.fields['url'].widget.input_type="string"
 
 """ プロジェクト更新 """
 class ProjectUpdate(forms.ModelForm):
@@ -29,7 +31,7 @@ class ProjectUpdate(forms.ModelForm):
         fields = (
             'name',
             'start_date', 'end_date',
-            'details'
+            'details','url',
         )
 
     def __init__(self, *args, **kwargs):
@@ -38,6 +40,7 @@ class ProjectUpdate(forms.ModelForm):
             field.widget.attrs['class'] = 'form-control'
         self.fields['start_date'].widget.input_type = "date"
         self.fields['end_date'].widget.input_type="date"
+        self.fields['url'].widget.input_type="string"
 
 
 """ プロジェクト削除 """
