@@ -8,7 +8,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <link rel="shortcut icon" type="image/x-icon" href="{% static 'img/c0063_6_2.png' %}">
+        <link rel="shortcut icon" type="image/x-icon" href="{% static 'img/デフォルト.png' %}">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
           integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
         <title>{% block title %}{% endblock %}</title>
@@ -52,9 +52,8 @@
     </head>
 
     <body>
-        <nav class="navbar navbar-dark sticky-top bg-light flex-md-nowrap p-0">
-            
-            <a class="navbar-brand col-sm-3 col-md-2 mr-0 barbtn text-dark bg-info" href="">{{ user.get_username }}　R4</a>
+        <nav class="navbar navbar-dark sticky-top flex-md-nowrap p-0" style="background-color: rgb(244,248,250);">  
+            <a class="navbar-brand col-sm-3 col-md-2 mr-0 barbtn text-dark" style="background-color: rgb(195,221,235);" href="">{{ user.last_name }}{{ user.first_name }}　R4</a>
             <div class="form-control form-control-dark w-100 text-dark">{% block mainT %}{% endblock %}</div>
             <div class="btn-group">
                 <div class="btn dropdown-toggle naviDrop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -63,7 +62,7 @@
                             {% if user.icon.url != "" %}
                                 <img src="{{ user.icon.url }}" style="height: 20px; width: 20px;">
                             {% else %}
-                                <img src="/static/img/c0063_6_2.png" style="height: 20px; width: 20px;">
+                                <img src="/static/img/デフォルト.png" style="height: 20px; width: 20px;">
                             {% endif%}
                         {% else %}
                             User
@@ -80,11 +79,12 @@
         </nav>
 
         <div class="drawr">
-            <div class="barmenu top">TaskManager</div>
-            <div class="barmenu"><a href="/"> <img src="/static/img/ホーム.png" style="height: 25px; width: 25px;">　トップページ</a></div>
-            <div class="barmenu"><a href="{% url 'task:task_top' %}"><img src="/static/img/課題.png" style="height: 25px; width: 25px;">　タスク</a></div>
-            <div class="barmenu"><a href="#"><img src="/static/img/課題２.png" style="height: 25px; width: 25px;">　科目</a></div>
-            <div class="barmenu"><a href="#"><img src="/static/img/設定.png" style="height: 25px; width: 25px;">　設定</a></div>
+            <div class="barmenu"><a href="/"><img src="/static/img/ホーム.png" style="height: 25px; width: 25px;">　ホーム</a></div>
+            <div class="barmenu"><a href="{% url 'task:task_top' %}"><img src="/static/img/課題.png" style="height: 25px; width: 25px;">　科目一覧</a></div>
+            <div class="barmenu"><a href="#"><img src="/static/img/課題２.png" style="height: 25px; width: 25px;">　課題一覧</a></div>
+            <div class="barmenu"><a href="#"><img src="/static/img/その他.png" style="height: 25px; width: 25px;">　その他</a></div>
+            <div class="barmenu"><a href="#"><img src="/static/img/通知.png" style="height: 25px; width: 25px;">　通知</a></div>
+            <div class="barmenu"><a href=""><img src="/static/img/設定.png" style="height: 25px; width: 25px;">　設定</a></div>
         </div>
       
         {% block body %}{% endblock %}
