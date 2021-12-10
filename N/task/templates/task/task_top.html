@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block title %} TaskMan {% endblock %}
+{% block mainT %} タスク {% endblock %}
+{% block body %}
+
+    <div class="leftArea">
+        <h2 class="eleTitle">期限内未提出</h2>
+        {% if leader != None %}
+            {% for lead in leader %}
+                {% if td_data < lead.end_date %}
+                    <a class="project_area" href="{% url 'task:our_project' lead.pk %}">
+                        <div>
+                            <h4>{{lead.name}}</h4>
+                            <p>科目名 : {{lead.leader}}</p>
+                            {% if lead.now_date != None %}
+                                <p>今の日付 : {{lead.now_date}}</p>
+                            {% endif %}
+                            {% if lead.start_date != None %}
+                                <p>開始日 : {{lead.start_date}}</p>
+                            {% endif %}
+                            {% if lead.end_date != None %}
+                                <p>終了日 : {{lead.end_date}}</p>
+                            {% endif %}
+                            {% if lead.details != None %}
+                                <p>詳細 : {{lead.details}}</p>
+                            {% endif %}
+                            {% if lead.url != None %}
+                                <p>URL : {{lead.url}}</p>
+                            {% endif %}
+                        </div>
+                    </a>
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            <h4>課題がありません</h4>
+        {% endif %}
+        <a class="btn btn-outline-secondary" href="/task/build_project/">課題作成</a>
+    </div>
+    <div class="rightArea">
+        <h2 class="eleTitle">期限切れ未提出</h2>
+        
+            {% for lead in leader %}
+                {% if td_data > lead.end_date %}
+                    <a class="project_area" href="{% url 'task:our_project_detail' lead.pk %}">
+                        <div>
+                            <h4>{{lead.name}}</h4>
+                            <p>科目名 : {{lead.leader}}</p>
+                            {% if lead.now_date != None %}
+                                <p>今の日付 : {{lead.now_date}}</p>
+                            {% endif %}
+                            {% if lead.start_date != None %}
+                                <p>開始日 : {{lead.start_date}}</p>
+                            {% endif %}
+                            {% if lead.end_date != None %}
+                                <p>終了日 : {{lead.end_date}}</p>
+                            {% endif %}
+                            {% if lead.details != None %}
+                                <p>詳細 : {{lead.details}}</p>
+                            {% endif %}
+                            {% if lead.url != None %}
+                                <p>URL : {{lead.url}}</p>
+                            {% endif %}
+                        </div>
+                    </a>
+                 {% endif %}
+            {% endfor %}
+         
+           
+        
+        
+    </div>
+{% endblock %}

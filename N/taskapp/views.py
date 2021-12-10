@@ -11,7 +11,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.shortcuts import redirect, resolve_url
 from .forms import LoginForm, RegistrationForm, AccountsUpdateForm
 from task.models import ProjectToUsers, Project
-
+from django.views import generic
+from . import mixins
+from .models import Schedule
 
 
 User = get_user_model()
@@ -32,7 +34,7 @@ class Top(LoginRequiredMixin, generic.TemplateView):
 class Logout(LoginRequiredMixin, LogoutView):
     template_name = 'logout.html'
 
-"""アカウント登録ページ"""
+    """アカウント登録ページ"""
 class Registration(generic.CreateView):
     model = User
     template_name = 'registration.html'
@@ -79,3 +81,15 @@ class PasswordChange(UserOnlyMixin, PasswordChangeView):
 """ パスワード変更完了 """
 class PasswordChangeComplete(UserOnlyMixin, PasswordChangeDoneView):
     template_name = 'password_change_complete.html'
+
+class MonthWithScheduleCalendar(mixins.MonthWithScheduleMixin, generic.TemplateView):
+    """スケジュール付きの月間カレンダーを表示するビュー"""
+    model = Schedule
+    template_name = 'top.html'
+    date_field = 'date'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        calendar_context = self.get_month_calendar()
+        context.update(calendar_context)
+        return context

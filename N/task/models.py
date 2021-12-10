@@ -1,6 +1,5 @@
 from django.db import models
 from taskapp.models import User
-from taskapp.models import Task
 
 """ プロジェクトモデル """
 class Project(models.Model):
@@ -10,14 +9,14 @@ class Project(models.Model):
 
     name = models.CharField(
         max_length=25,
-        verbose_name='プロジェクト名'
+        verbose_name='課題名'
     )
 
     leader = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
         related_name='leader',
-        verbose_name='プロジェクトリーダ'
+        verbose_name='科目名'
     )
 
     start_date = models.DateField(
@@ -29,15 +28,29 @@ class Project(models.Model):
     end_date = models.DateField(
         null=True,
         blank=True,
-        verbose_name='終了日'
+        verbose_name='期限'
     )
 
+    now_date = models.DateField(
+        null=True,
+        blank=True,
+        verbose_name='今の日付'
+    )
+
+   
     details = models.CharField(
         max_length=200,
         null=True,
         blank=True,
         verbose_name='詳細'
     )
+
+    url = models.CharField(
+        max_length=200,
+        null=True,
+        blank=True,
+        verbose_name='URL'
+    )   
 
     update_date = models.DateField(
         auto_now=True
@@ -47,6 +60,74 @@ class Project(models.Model):
         default=False
     )
     
+
+
+class Task(models.Model):
+    PRIOLITY_NUMBER = (
+        (0, '未選択'),
+        (1, '最低'),
+        (2, '低'),
+        (3, '普通'),
+        (4, '高'),
+        (5, '最高')
+
+    )
+
+    task_cd = models.AutoField(
+        primary_key=True
+    )
+
+    task_name = models.CharField(
+        max_length=100,
+        verbose_name='タスク名'
+    )
+
+    user_name = models.CharField(
+        max_length=30,
+        null=True,
+        blank=True,
+        verbose_name='担当者名'
+    )
+
+    user = models.ForeignKey(
+        User,
+        on_delete=models.SET_NULL,
+        null=True,
+        verbose_name='担当者'
+    )
+
+    start_date = models.DateField(
+        null=True,
+        blank=True,
+        verbose_name='開始日'
+    )
+
+    end_date = models.DateField(
+        null=True,
+        blank=True,
+        verbose_name='期限'
+    )
+
+    details = models.CharField(
+        max_length=200,
+        null=True,
+        blank=True,
+        verbose_name='詳細'
+    )
+
+    priolity = models.IntegerField(
+        choices=PRIOLITY_NUMBER,
+        default=0
+    )
+
+    update_date = models.DateField(
+        auto_now=True
+    )
+
+    is_delete = models.BooleanField(
+        default=False
+    )
+
 """ プロジェクト To ユーザ （1 対 多） """
 class ProjectToUsers(models.Model):
     project_cd = models.ForeignKey(
@@ -58,7 +139,6 @@ class ProjectToUsers(models.Model):
         User,
         on_delete=models.CASCADE
     )
-    use_cd = models.TextField()
 
 """ プロジェクト To タスク （1 対 多） """
 class ProjectToTask(models.Model):
@@ -71,4 +151,4 @@ class ProjectToTask(models.Model):
         Task,
         on_delete=models.CASCADE
     )
-
+    

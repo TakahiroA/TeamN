@@ -14,7 +14,8 @@ from .forms import AddProjectMember
 from django.http.response import JsonResponse
 from django.core import serializers
 from .models import ProjectToUsers, Project, ProjectToTask, Task
-
+from django.views.decorators.csrf import csrf_exempt 
+import datetime
 
 User = get_user_model()
 
@@ -24,13 +25,34 @@ class taskTop(LoginRequiredMixin, generic.TemplateView):
     template_name = 'task/task_top.html'
     redirect_field_name = 'redirect_to'
 
+    def get_context_data(self, **kwargs):
+        user = self.request.user
+        context = super().get_context_data(**kwargs)
+
+        project_user = ProjectToUsers.objects.filter(user_cd=user.pk)
+        leader = Project.objects.filter(leader=user.pk, is_delete=0)
+        now_data = datetime.date.today()
+        context["td_data"] = now_data
+
+
+        if len(project_user) > 0:
+            context['member'] = []
+            for person in project_user:
+                member = Project.objects.filter(project_cd=person.project_cd.pk, is_delete=0)
+                context['member'].extend(member)
+        else:
+            context['member'] = None
+
+        context['leader'] = leader if len(leader) > 0 else None
+
+        return context
+
 """ プロジェクト作成 """
 class BuildProject(LoginRequiredMixin, generic.CreateView):
     model = Project
-    template_name = 'task/build_project.html'
     form_class = ProjectCreate
     success_url ='/task/'
-
+    template_name = 'task/build_project.html'
 
     def get_initial(self): 
         leader = self.request.user.pk
@@ -45,10 +67,9 @@ class ProjectUserOnlyMixin(UserPassesTestMixin):
 
         user = self.request.user
 
-        l_result = Project.objects.filter(leader=user.use_cd, project_cd=self.kwargs["pk"])
+        l_result = Project.objects.filter(leader=user.pk, project_cd=self.kwargs["pk"])
         m_result = ProjectToUsers.objects.filter(project_cd=self.kwargs["pk"], user_cd=self.request.user.pk)
         p_result = Project.objects.filter(project_cd=self.kwargs["pk"], is_delete=0)
-
         if len(l_result) == 0 and len(m_result) == 0:
             is_return = False
 
@@ -64,7 +85,7 @@ class ProjectPage(ProjectUserOnlyMixin, generic.TemplateView):
     def get_context_data(self, **kwargs):
         user = self.request.user
         context = super().get_context_data(**kwargs)
-
+        
         project = Project.objects.filter(project_cd=self.kwargs["pk"])
         p_user = ProjectToUsers.objects.filter(project_cd=self.kwargs["pk"])
 
@@ -90,7 +111,7 @@ class ProjectLeaderOnlyMixin(UserPassesTestMixin):
 
         user = self.request.user
 
-        l_result = Project.objects.filter(leader=user.use_cd, project_cd=self.kwargs["pk"])
+        l_result = Project.objects.filter(leader=user.pk, project_cd=self.kwargs["pk"])
         p_result = Project.objects.filter(project_cd=self.kwargs["pk"], is_delete=0)
 
         if len(l_result) == 0:
@@ -203,28 +224,28 @@ class ProjectDeleteMember(ProjectLeaderOnlyMixin, generic.DeleteView):
             ProjectToUsers.objects.filter(id__in=delete_ids).delete()
 
         return redirect('task:update_member', pk=self.kwargs["pk"])
-
+    
 
 """ タスク追加 """
 class AddTaskForAjax():
 
     def ajax_response(self, *args, **kwargs):
-        taskName = self.POST['taskName']
+        taskName = 'sample'
 
-        if self.POST['user'] != "":
-            user = User.objects.get(pk=self.POST['user'])
+        if self.POST.get('user') != "":
+            user = self.POST.get('user')
         else:
             user = None
 
         if user == None:
-            userName = self.POST['userName'] if self.POST['userName'] != "" else None
+            userName = self.POST.get('userName') if self.POST.get('userName') != "" else None
         else:
             userName = None
 
-        details = self.POST['details'] if self.POST['details'] != "" else None
-        startDate = self.POST['startDate'] if self.POST['startDate'] != "" else None
-        endDate = self.POST['endDate'] if self.POST['endDate'] != "" else None
-        priolity = self.POST['priolity'] if self.POST['priolity'] != "" else None
+        details = self.POST.get('details') if self.POST.get('details') != "" else None
+        startDate = self.POST.get('startDate') if self.POST.get('startDate') != "" else None
+        endDate = self.POST.get('endDate') if self.POST.get('endDate') != "" else None
+        priolity = '1'
 
         task = Task.objects.create(
             task_name=taskName, user=user,
@@ -233,20 +254,19 @@ class AddTaskForAjax():
             priolity=priolity
         )
 
-        projectCd = kwargs['pk']
-
+        projectCd = Project.objects.filter(project_cd=self.kwargs['pk'])
         project = Project.objects.get(project_cd=projectCd)
 
         result = ProjectToTask.objects.create(
             project_cd=project, task_cd=task
-        )
+        )   
 
         projectTask = ManupilateDataBase.getProjectTask(projectCd)
-
         json_serializer = serializers.get_serializer("json")()
         taskData = json_serializer.serialize(projectTask, ensure_ascii=False)
 
         return JsonResponse({"taskdata" : taskData})
+        
 
 
 """ DB操作クラス """
@@ -306,3 +326,20 @@ class ManupilateDataBase():
             return user
         else:
             return None
+
+""" プロジェクトタスク情報取得 """
+class getProjectTaskInfoAjax():
+
+    @csrf_exempt 
+    def ajax_response(self, *args, **kwargs):
+        task_cd = self.POST['task_cd']
+
+        projectTask = ManupilateDataBase.getTaskInfo(task_cd)
+
+        if (projectTask[0].user != None):
+            projectTask[0].user_name = projectTask[0].user.username
+
+        json_serializer = serializers.get_serializer("json")()
+        taskData = json_serializer.serialize(projectTask, ensure_ascii=False)
+
+        return JsonResponse({"taskdata" : taskData})
