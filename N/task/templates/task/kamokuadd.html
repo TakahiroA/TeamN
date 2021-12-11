@@ -23,20 +23,25 @@
         </div>
     </div>
 </nav>
+<script type="text/javascript">
+    $(function(){
+      var d = sessionStorage.getItem('key');
+      $("#result").text(d);
+    })
+    </script>
 <!--切り替え用ボタン-->
 <div class="text-center">
-    <a type="button" class=" btn text-dark w-25 mr-3 check_button" style="background-color: rgb(195,221,235);" id="checkbox" name="checkbox" href="{% url 'task:our_project' project.0.pk %}">期限内未提出</a>
+    <a type="button" class=" btn text-dark w-25 mr-3 check_button" style="background-color: rgb(195,221,235);" href="{% url 'task:our_project' project.0.pk %}">フォロー未</a>
     <img src="/static/img/スラッシュ.png" style="height: 25px; width: 25px;">　
-    <a type="button" class="btn text-dark w-25 check_button" style="background-color: rgb(244,248,250);" href="{% url 'task:our_project_kamokuadd' project.0.pk %}">期限切れ未提出</a>
+    <a type="button" class="btn text-dark w-25 check_button" style="background-color: rgb(244,248,250);" href="{% url 'task:our_project_kamokuadd' project.0.pk %}">フォロー済</a>
 </div>
 
 {% if task == None %}
 <div id="taskList">
-    var d = sessionStorage.getItem('key');
     {% if task == None %}
-    {% if aaa == None %}
     <div class="cp_ipcheck">
         <ul>
+            <li><p id="result"></p></li>
             <li>{{ project.0.name }}　　　　　　　　　　<img src="/static/img/スラッシュ.png" style="height: 25px; width: 25px;">　　　　　　　　　　{{ project.0.leader }}<input type="checkbox" class="option-input02 checkbox" ></li>
             <li>{{ project.0.name }}　　　　　　　　　　<img src="/static/img/スラッシュ.png" style="height: 25px; width: 25px;">　　　　　　　　　　{{ project.0.leader }}<input type="checkbox" class="option-input02 checkbox" ></li>
         </ul>
@@ -48,20 +53,7 @@
         </ul>
     </div>
     {% endif %}
-    {% else %}
-        <ul id="taskAccordion">
-            {% for content in task %}
-                <li class="selectTask task{{content.priolity}}" value="{{content.task_cd}}"> {{content.task_name}} </li> 
-            {% endfor %}
-        </ul>
-    {% endif %}
-
 </div>
 {% endif %}
-<script type="text/javascript">
-    $(function(){
-      var d = sessionStorage.getItem('key');
-      $("#result").text(d);
-    })
-    </script>
+
 {% endblock %}
