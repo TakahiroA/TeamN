@@ -2,12 +2,88 @@
     margin:20px;
     text-align: center;
 }
-
 /*右上*/
 .naviDrop {
     color:black;
     margin-right:20px;
     width:200px;
+}
+/* twitter画像をホバーした */
+a.check_button:hover{ 
+	/* リンクをホバーしたときのカーソルにする。*/
+	cursor: pointer;
+}
+ 
+/* twitter画像をクリックした瞬間 */
+a.check_button:active{
+ 
+	/* 要素を若干下に下げることで、押した感じを出す。*/
+ 
+	/* 今いる位置から相対的に3px下に配置する。*/
+	position: relative;
+	top: 3px;
+}
+
+.cp_ipcheck {
+	text-align: center;
+    position: relative;
+    top: -27px;
+}
+@keyframes click-wave {
+	0% {
+		position: relative;
+		width: 20px;
+		height: 20px;
+		opacity: 0.35;
+	}
+	100% {
+		width: 150px;
+		height: 150px;
+		margin-top: -70px;
+		margin-left: -65px;
+		opacity: 0;
+	}
+}
+.cp_ipcheck .option-input02 {
+	position: relative;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	width: 20px;
+	height: 20px;
+	margin-left: auto;
+	cursor: pointer;
+	transition: all 0.15s ease-out 0s;
+	color: #ffffff;
+	border: none;
+	outline: none;
+	background: #d7cbcb;
+	-webkit-appearance: none;
+	        appearance: none;
+}
+.cp_ipcheck .option-input02:hover {
+	background: #d6a9a9;
+}
+.cp_ipcheck .option-input02:checked {
+	background: #da3c41;
+}
+.cp_ipcheck .option-input02:checked::before {
+	font-size: 10px;
+	line-height: 20px;
+	position: absolute;
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	content: '✔';
+	text-align: center;
+}
+.cp_ipcheck .option-input02:checked::after {
+	position: relative;
+	display: block;
+	content: '';
+	-webkit-animation: click-wave 0.65s;
+	        animation: click-wave 0.65s;
+	background: #da3c41;
 }
 
 .icon {

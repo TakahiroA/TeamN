@@ -102,6 +102,30 @@ class ProjectPage(ProjectUserOnlyMixin, generic.TemplateView):
 
         return context
 
+class ProjectAdd(ProjectUserOnlyMixin, generic.TemplateView):
+    model = Project
+    template_name = 'task/kamokuadd.html'
+
+    def get_context_data(self, **kwargs):
+        user = self.request.user
+        context = super().get_context_data(**kwargs)
+        
+        project = Project.objects.filter(project_cd=self.kwargs["pk"])
+        p_user = ProjectToUsers.objects.filter(project_cd=self.kwargs["pk"])
+
+        if len(p_user) > 0:
+            context['member'] = []
+            for person in p_user:
+                member = User.objects.filter(pk=person.user_cd.pk)
+                context['member'].extend(member)
+        else:
+            context['member'] = None
+
+        context['project'] = project if len(project) > 0 else None
+        context['task'] = None
+
+        return context
+
 """ プロジェクトリーダ限定 """
 class ProjectLeaderOnlyMixin(UserPassesTestMixin):
     raise_exception = True
