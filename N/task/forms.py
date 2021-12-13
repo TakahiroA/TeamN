@@ -23,6 +23,19 @@ class ProjectCreate(forms.ModelForm):
         self.fields['end_date'].widget.input_type="date"
         self.fields['url'].widget.input_type="string"
 
+""" 課題提出Check """
+class Kadaicheckf(forms.ModelForm):
+
+    class Meta:
+        model = Project
+        fields = (
+            'check',
+        )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['check'].queryset = '提出済み'
+
 """ プロジェクト更新 """
 class ProjectUpdate(forms.ModelForm):
 

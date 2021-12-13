@@ -11,6 +11,7 @@ from .forms import ProjectCreate
 from .forms import ProjectUpdate
 from .forms import ProjectDelete
 from .forms import AddProjectMember
+from .forms import Kadaicheckf
 from django.http.response import JsonResponse
 from django.core import serializers
 from .models import ProjectToUsers, Project, ProjectToTask, Task
@@ -46,6 +47,14 @@ class taskTop(LoginRequiredMixin, generic.TemplateView):
         context['leader'] = leader if len(leader) > 0 else None
 
         return context
+
+""" 課題チェック """
+class Kadaicheck(LoginRequiredMixin, generic.TemplateView):
+    template_name = 'task/kadaicheck.html'
+    form_class = Kadaicheckf
+
+    def get_success_url(self):
+        return redirect('/task/')
 
 """ プロジェクト作成 """
 class BuildProject(LoginRequiredMixin, generic.CreateView):

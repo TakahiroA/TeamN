@@ -27,94 +27,10 @@
             </tr>
             <tr>
                 <th>URL</th>
-                <td><img src="/static/img/印.png" style="height: 25px; width: 25px;">　<a href="{{ project.0.url }}" target="_blank">{{ project.0.url }}</a></td>
+                <td><img src="/static/img/印.png" style="height: 25px; width: 25px;">　<a href="/task/kadaicheck/" onclick="window.open('{{ project.0.url }}');">{{ project.0.url }}</a></td>
             </tr>
         </tbody>
     </table>
-    <form id="ajax-select-materials" action="{% url 'app:add_material2recipe' storage_id menu_id %}" method="POST">
-        <table class="table table-striped table-hover">
-          <tr>
-            <th class="width5">＋</th>
-            <th class="width35">品名</th>
-            <th class="width30">在庫</th>
-            <th class="width30">追加量</th>
-          </tr>
-          {% for stock_material, form in stocks|zip:formset %}
-          <tr>
-            <td><input type="checkbox" name="chk" value="{{stock_material}}" /></td>
-            <td>{{stock_material.name}}</td>
-            <td>{{stock_material.amount4ingredient}} {{stock_material.name.unit}}</td>
-            <td>{% render_field form.amount4ingredient class="form-control" id=stock_material.name.name %}</td>
-          </tr>
-          {% endfor %}
-        </table>
-        <div class="modal-footer">
-          <button type="button" data-bs-dismiss="modal" class="btn btn-secondary">
-            キャンセル
-          </button>
-          <button type="button" data-bs-dismiss="modal" class="btn btn-success" onclick="select_materials()">
-            OK
-          </button>
-        </div>
-        {% csrf_token %}
-      </form>
-
-      <script>
-        function getCookie(name) {
-          var cookieValue = null;
-          if (document.cookie && document.cookie !== '') {
-            var cookies = document.cookie.split(';');
-            for (var i = 0; i < cookies.length; i++) {
-              var cookie = jQuery.trim(cookies[i]);
-              // Does this cookie string begin with the name we want?
-              if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                break;
-              }
-            }
-          }
-          return cookieValue;
-        }
-       
-        var csrftoken = getCookie('csrftoken');
-       
-        function csrfSafeMethod(method) {
-          // these HTTP methods do not require CSRF protection
-          return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
-        }
-       
-        $.ajaxSetup({
-          beforeSend: function (xhr, settings) {
-            if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
-              xhr.setRequestHeader("X-CSRFToken", csrftoken);
-            }
-          }
-        });
-       
-        function select_materials() {
-          var selected = [];
-          $('input:checked').each(function () {
-             selected.push($(this).val());
-             selected.push(document.getElementById($(this).val()).value);
-             selected.push(document.getElementById("id_" + $(this).val()).value);
-          });
-          $.ajax({
-            'url': '{% url "cookme:add_material2recipe" storage_id menu_id %}',
-            'type': 'POST',
-            'data': {
-              'selected_materials': JSON.stringify(selected)
-            },
-            'dataType': 'json'
-          }).done(response => {
-            $('#id_added_name').empty();
-       
-            for (const added_name of response.checked_material) {
-              const p = $('<p>', { html: '<span style="color:red;">' + added_name + '</span>' });
-              $('#id_added_name').append(p);
-            }
-          });
-        };
-      </script>
 
     <hr>
     <a href="{% url 'task:our_project' project.0.pk %}" class="btn btn-primary" style="width: 120px; margin-right:10px;">戻る</a>
