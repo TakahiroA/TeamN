@@ -46,7 +46,9 @@
                     {% endif %}
 
                     {% for schedule in schedules %}
+                    <a href="{% url 'task:task_top' %}">
                         <p>{{ schedule.summary }}</p>
+                    </a>
                     {% endfor %}
                 </div>
                 </td>

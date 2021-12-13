@@ -2,7 +2,7 @@ from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views import generic
 from django.contrib.sites.shortcuts import get_current_site
-from django.shortcuts import redirect, resolve_url
+from django.shortcuts import redirect, render, resolve_url
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
 from django.db import models
@@ -16,6 +16,11 @@ from django.core import serializers
 from .models import ProjectToUsers, Project, ProjectToTask, Task
 from django.views.decorators.csrf import csrf_exempt 
 import datetime
+import cgi # CGIモジュールのインポート
+import cgitb
+import sys
+from taskapp.models import Schedule
+
 
 User = get_user_model()
 
@@ -33,6 +38,7 @@ class taskTop(LoginRequiredMixin, generic.TemplateView):
         leader = Project.objects.filter(leader=user.pk, is_delete=0)
         now_data = datetime.date.today()
         context["td_data"] = now_data
+
 
 
         if len(project_user) > 0:
@@ -57,6 +63,13 @@ class BuildProject(LoginRequiredMixin, generic.CreateView):
     def get_initial(self): 
         leader = self.request.user.pk
         return {'leader': leader,}
+
+    def form_valid(self, form):
+        end_date = form.cleaned_data.get('end_date')
+        name = form.cleaned_data.get('name')           
+        obj= Schedule(date= end_date, summary= name)
+        obj.save()
+        return super().form_valid(form)
 
 """ プロジェクト限定 """
 class ProjectUserOnlyMixin(UserPassesTestMixin):
