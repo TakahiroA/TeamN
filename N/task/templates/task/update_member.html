@@ -61,7 +61,7 @@
                 <label for="{{ field.id_for_label }}">{{ field.label_tag }}</label>
             {% endif %}
             {{ field }}
-            <span style="color:red">{{ field.errors }}<span>
+            <span style="color:red">{{ field.errors }}</span>
         </div>
         {% endfor %}
         {% csrf_token %}

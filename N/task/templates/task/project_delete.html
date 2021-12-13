@@ -32,9 +32,9 @@
                     <td>
                         <table class="no_border">
                             {% for person in member %}
-                                <Tr>
+                                <tr>
                                     <td>{{ person.username }}</td>
-                                </Tr>
+                                </tr>
                             {% endfor %}
                         </table>
                     </td>
@@ -57,4 +57,5 @@
         <a href="{% url 'task:our_project_detail' project.0.pk %}" class="btn btn-primary">戻る</a>
         <button type="submit" class="delete-btn btn btn-success">削除</button>
     </form>
+</div>
 {% endblock %}

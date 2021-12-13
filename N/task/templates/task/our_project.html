@@ -11,15 +11,14 @@
         <div class="btn dropdown-toggle naviDrop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             メンバー
         </div>
-            <div class="dropdown-menu dropdown-menu-right" >
-                <a class="dropdown-item" href="#"> {{ project.0.leader }} </a>
-                {% if member != None %}
-                    <div class="dropdown-divider"></div>
-                    {% for person in member %}
-                    <a class="dropdown-item" href="#"> {{ person }} </a>
-                    {% endfor %}
-                {% endif %}
-            </div>
+        <div class="dropdown-menu dropdown-menu-right" >
+            <a class="dropdown-item" href="#"> {{ project.0.leader }} </a>
+            {% if member != None %}
+                <div class="dropdown-divider"></div>
+                {% for person in member %}
+                <a class="dropdown-item" href="#"> {{ person }} </a>
+                {% endfor %}
+            {% endif %}
         </div>
     </div>
 </nav>
@@ -43,6 +42,7 @@
         </ul>
     {% else %}
         <ul id="taskAccordion">
+            <li>タスクがあります</li>
             {% for content in task %}
 
                 <li class="selectTask task{{content.priolity}}" value="{{content.task_cd}}"> {{content.task_name}} </li> 
