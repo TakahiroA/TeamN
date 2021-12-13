@@ -7,19 +7,20 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
 from django.db import models
 from .models import ProjectToUsers, Project
-from .forms import ProjectCreate
+from .forms import ProjectCreate, Subject_all
 from .forms import ProjectUpdate
 from .forms import ProjectDelete
 from .forms import AddProjectMember
 from django.http.response import JsonResponse
 from django.core import serializers
-from .models import ProjectToUsers, Project, ProjectToTask, Task
+from .models import ProjectToUsers, Project, ProjectToTask, Task,Subject,Follow
 from django.views.decorators.csrf import csrf_exempt 
 import datetime
 import cgi # CGIモジュールのインポート
 import cgitb
 import sys
 from taskapp.models import Schedule
+
 
 
 User = get_user_model()
@@ -92,28 +93,28 @@ class ProjectUserOnlyMixin(UserPassesTestMixin):
         return is_return
 
 """ プロジェクトページ """
-class ProjectPage(ProjectUserOnlyMixin, generic.TemplateView):
+class ProjectPage(LoginRequiredMixin, generic.TemplateView):
     template_name = 'task/our_project.html'
-
+    form_class = Subject_all
+    
     def get_context_data(self, **kwargs):
         user = self.request.user
         context = super().get_context_data(**kwargs)
         
-        project = Project.objects.filter(project_cd=self.kwargs["pk"])
-        p_user = ProjectToUsers.objects.filter(project_cd=self.kwargs["pk"])
-
-        if len(p_user) > 0:
-            context['member'] = []
-            for person in p_user:
-                member = User.objects.filter(pk=person.user_cd.pk)
-                context['member'].extend(member)
-        else:
-            context['member'] = None
-
-        context['project'] = project if len(project) > 0 else None
-        context['task'] = None
-
+        subject = Subject.objects.all()
+        
+        context['subject'] = subject
+        
         return context
+
+    def form_valid(self,request):
+        subject = request.POST.getlist('subjects')
+        for sub in subject:
+            sub_i = Subject.objects.filter(subject_cd=sub)
+            obj = Follow(subject_cd=sub_i.subject_cd,subject_name=sub_i.subject_name)
+            obj.save()
+        return super().form_valid(request)
+        
 
 """ プロジェクトリーダ限定 """
 class ProjectLeaderOnlyMixin(UserPassesTestMixin):

@@ -33,7 +33,7 @@
     </table>
 
     <hr>
-    <a href="{% url 'task:our_project' project.0.pk %}" class="btn btn-primary" style="width: 120px; margin-right:10px;">戻る</a>
+    <a href="{% url 'task:task_top' %}" class="btn btn-primary" style="width: 120px; margin-right:10px;">戻る</a>
     <a href="{% url 'task:our_project_update' project.0.pk %}" class="btn btn-primary ">変更</a>
     {% if user == project.0.leader %}
         <a href="{% url 'task:our_project_delete' project.0.pk %}" class="delete-btn btn btn-primary">削除</a>
