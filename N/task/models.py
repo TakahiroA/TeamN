@@ -50,7 +50,12 @@ class Project(models.Model):
         null=True,
         blank=True,
         verbose_name='URL'
-    )   
+    )
+
+    check = models.CharField(
+        max_length=200,
+        verbose_name='提出状況'
+    )      
 
     update_date = models.DateField(
         auto_now=True

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %} TaskMan {% endblock %}
+{% block mainT %} パスワード変更 {% endblock %}
+{% block body %}
+<div style="text-align: center; padding-top: 50px;">
+    <h2>課題を提出しましたか？</h2>
+    <a href="/task/" class="btn btn-primary" style="width: 140px; margin-right:10px;">課題一覧に戻る</a>
+    <form action="" method="POST">
+        <button type="submit" class="btn btn-primary" style="width: 140px; margin-right:10px;" value="">提出済みに登録</button>
+        {% csrf_token %}
+    </form>
+</div>
+{% endblock %}
