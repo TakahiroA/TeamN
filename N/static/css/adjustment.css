@@ -46,9 +46,8 @@ a.check_button:active{
 }
 .cp_ipcheck .option-input02 {
 	position: relative;
-	right: 0;
 	bottom: 0;
-	left: 0;
+    float: right;
 	width: 20px;
 	height: 20px;
 	margin-left: auto;
@@ -65,7 +64,7 @@ a.check_button:active{
 	background: #d6a9a9;
 }
 .cp_ipcheck .option-input02:checked {
-	background: #da3c41;
+	background: #000000;
 }
 .cp_ipcheck .option-input02:checked::before {
 	font-size: 10px;
@@ -83,7 +82,7 @@ a.check_button:active{
 	content: '';
 	-webkit-animation: click-wave 0.65s;
 	        animation: click-wave 0.65s;
-	background: #da3c41;
+	background:#000000;
 }
 
 .icon {
@@ -184,16 +183,20 @@ ul, li {
     height: 10%;
 }
 
+.kensakuTitle {
+    margin-top: 100px;
+    text-align: center;
+    color:#589BFE;
+}
 
 #taskList ul li,#taskList ol li{
-    border: solid 2px #C3DDEB;/*枠線*/
-    background: #F4F8FA;/*背景色*/
-    margin-bottom: 5px;/*下のバーとの余白*/
+    border: solid 2px #7F7F7F;/*枠線*/
+    background: #C3DDEB;/*背景色*/
     border-radius: 15px 15px 15px 15px;
     padding: 20px;
     list-style-type: none!important;
     color: black;
-    margin: 20px 50px;
+    margin: 200px 50px;
 }
 
 #style1 {
