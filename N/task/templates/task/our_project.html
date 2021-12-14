@@ -8,8 +8,8 @@
     <form method="POST">
         {{ subject.non_field_errors }}
         {% for field in subject %}
-            <div>
-                <input type="checkbox" id="subject_check" name="subjects" value="{{ field.subject_cd }}">
+            <div class="cp_ipcheck">
+                <input type="checkbox" class="option-input02 checkbox" id="subject_check" name="subjects" value="{{ field.subject_cd }}">
                 <label for="subject_check">{{ field.subject_name }}</label>
             </div>
         {% endfor %}
@@ -21,9 +21,5 @@
             <h4>科目がありません</h4>
     {% endif %}
 </div>
-
-
-
-
 
 {% endblock %}
