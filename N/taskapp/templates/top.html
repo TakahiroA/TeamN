@@ -24,7 +24,7 @@
         <thead>
         <tr>
             {% for w in week_names %}
-                <th>{{ w }}</th>
+                <th><div class="text-center">{{ w }}</div></th>
             {% endfor %}
         </tr>
         </thead>
@@ -34,7 +34,7 @@
                 {% for day, schedules in week_day_schedles.items %}
                     {% if now == day %}
                         <td class="table-success">
-                            {% else %}
+                        {% else %}
                         <td>
                     {% endif %}
 
