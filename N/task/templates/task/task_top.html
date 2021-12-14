@@ -8,10 +8,10 @@
         {% if leader != None %}
             {% for lead in leader %}
                 {% if td_data < lead.end_date %}
-                    <a class="project_area" href="{% url 'task:our_project' lead.pk %}">
+                    <a class="project_area" href="{% url 'task:our_project_detail' lead.pk %}">
                         <div>
                             <h4>{{lead.name}}</h4>
-                            <p>科目名 : {{lead.leader}}</p>
+                            <p>講師 : {{lead.leader}}</p>
                             {% if lead.now_date != None %}
                                 <p>今の日付 : {{lead.now_date}}</p>
                             {% endif %}
