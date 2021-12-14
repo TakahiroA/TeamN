@@ -13,5 +13,7 @@ urlpatterns = [
     path('ProjectPage/<int:pk>/update_member', views.UpdateProjectMember.as_view(), name='update_member'),
     path('ProjectPage/<int:pk>/delete_member', views.ProjectDeleteMember.as_view(), name='our_project_delete_member'),
     path('ProjectPage/<int:pk>/AATask', views.AddTaskForAjax.ajax_response, name='add_task'),
-    path('ajax/getProjectTaskInfo',views.getProjectTaskInfoAjax.ajax_response, name='getPJTask')
+    path('ajax/getProjectTaskInfo',views.getProjectTaskInfoAjax.ajax_response, name='getPJTask'),
+
+    path('ProjectPage/<int:pk>/', views.ProjectPage.as_view(), name='our_project_after'),
 ]

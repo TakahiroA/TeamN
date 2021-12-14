@@ -3,13 +3,20 @@
 {% block mainT %} タスク {% endblock %}
 {% block body %}
 
-    <div class="leftArea">
-        <h2 class="eleTitle">期限内未提出</h2>
+<div class="text-center" style="margin: 10px;">
+    <div class="form-group row justify-content-center">
+        <button onclick="location.href='/task/ProjectPage/1/'" type="button" class=" btn text-dark w-40 mr-3" style="background-color: rgb(195,221,235);">期限内未提出</button>
+        <img src="/static/img/スラッシュ.png" style="height: 25px; width: 25px;">　
+        <button onclick="location.href='/task/ProjectPage/3/'" type="button" class="btn text-dark w-40" style="background-color: rgb(244,248,250)">期限切れ未提出</button>
+    </div>
+    
+    
         {% if leader != None %}
             {% for lead in leader %}
                 {% if td_data < lead.end_date %}
-                    <a class="project_area" href="{% url 'task:our_project' lead.pk %}">
-                        <div>
+                <center>
+                    <a class="project_area"  href="{% url 'task:our_project' lead.pk %}">
+                        <div >
                             <h4>{{lead.name}}</h4>
                             <p>科目名 : {{lead.leader}}</p>
                             {% if lead.now_date != None %}
@@ -29,18 +36,23 @@
                             {% endif %}
                         </div>
                     </a>
-                {% endif %}
+                
+                    
+                    {% endif %}
             {% endfor %}
         {% else %}
             <h4>課題がありません</h4>
         {% endif %}
-        <a class="btn btn-outline-secondary" href="/task/build_project/">課題作成</a>
-    </div>
-    <div class="rightArea">
-        <h2 class="eleTitle">期限切れ未提出</h2>
         
+                </div>  
+            </center> 
+    
+        
+
+         
             {% for lead in leader %}
                 {% if td_data > lead.end_date %}
+                <center>
                     <a class="project_area" href="{% url 'task:our_project_detail' lead.pk %}">
                         <div>
                             <h4>{{lead.name}}</h4>
@@ -64,9 +76,10 @@
                     </a>
                  {% endif %}
             {% endfor %}
-         
-           
+    </div>  
+    </center>
+    
         
-        
-    </div>
+    <a class="btn btn-outline-secondary" href="/task/build_project/">課題作成</a>
+</div>
 {% endblock %}
