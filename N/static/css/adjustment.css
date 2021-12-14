@@ -9,78 +9,6 @@
     margin-right:20px;
     width:200px;
 }
-/* ボタンホバー */
-a.check_button:hover{ 
-	cursor: pointer;
-}
- 
-/* ボタンをクリックした瞬間 */
-a.check_button:active{
-	position: relative;
-	top: 3px;
-}
-
-.cp_ipcheck {
-	text-align: center;
-    position: relative;
-    top: -27px;
-}
-@keyframes click-wave {
-	0% {
-		position: relative;
-		width: 20px;
-		height: 20px;
-		opacity: 0.35;
-	}
-	100% {
-		width: 150px;
-		height: 150px;
-		margin-top: -70px;
-		margin-left: -65px;
-		opacity: 0;
-	}
-}
-.cp_ipcheck .option-input02 {
-	position: relative;
-	bottom: 0;
-    float: right;
-	width: 20px;
-	height: 20px;
-	margin-left: auto;
-	cursor: pointer;
-	transition: all 0.15s ease-out 0s;
-	color: #ffffff;
-	border: none;
-	outline: none;
-	background: #d7cbcb;
-	-webkit-appearance: none;
-	        appearance: none;
-}
-.cp_ipcheck .option-input02:hover {
-	background: #d6a9a9;
-}
-.cp_ipcheck .option-input02:checked {
-	background: #000000;
-}
-.cp_ipcheck .option-input02:checked::before {
-	font-size: 10px;
-	line-height: 20px;
-	position: absolute;
-	display: inline-block;
-	width: 20px;
-	height: 20px;
-	content: '✔';
-	text-align: center;
-}
-.cp_ipcheck .option-input02:checked::after {
-	position: relative;
-	display: block;
-	content: '';
-	-webkit-animation: click-wave 0.65s;
-	        animation: click-wave 0.65s;
-	background:#000000;
-}
-
 
 .icon {
     text-align: center;
@@ -181,6 +109,7 @@ ul, li {
 }
 
 
+
 #taskList ul li,#taskList ol li{
     border: solid 2px #C3DDEB;/*枠線*/
     background: #F4F8FA;/*背景色*/
@@ -218,4 +147,98 @@ ul, li {
 
 #taskAccordion li {
     cursor: pointer;
+}
+
+.box1{
+    padding: 2em;
+    margin: 1em auto;
+    width: 70%;
+    background-color: #fff;
+    border: solid 1px #000;
+   
+}
+
+.box2{
+    padding: 0.25em;
+    margin: 1em auto;
+    width: 80%;
+    background-color: #fff;
+    border: solid 1px #fff;
+}
+
+.simple-border1{
+    border-bottom: 1px solid #589BFE;
+    border-width: thick;
+}
+
+/* ボタンホバー */
+a.check_button:hover{ 
+	cursor: pointer;
+}
+ 
+/* ボタンをクリックした瞬間 */
+a.check_button:active{
+	position: relative;
+	top: 3px;
+}
+
+.cp_ipcheck {
+	text-align: center;
+    position: relative;
+    top: -27px;
+}
+@keyframes click-wave {
+	0% {
+		position: relative;
+		width: 20px;
+		height: 20px;
+		opacity: 0.35;
+	}
+	100% {
+		width: 150px;
+		height: 150px;
+		margin-top: -70px;
+		margin-left: -65px;
+		opacity: 0;
+	}
+}
+.cp_ipcheck .option-input02 {
+	position: relative;
+	bottom: 0;
+    float: right;
+	width: 20px;
+	height: 20px;
+	margin-left: auto;
+	cursor: pointer;
+	transition: all 0.15s ease-out 0s;
+	color: #ffffff;
+	border: none;
+	outline: none;
+	background: #d7cbcb;
+	-webkit-appearance: none;
+	        appearance: none;
+}
+.cp_ipcheck .option-input02:hover {
+	background: #d6a9a9;
+}
+.cp_ipcheck .option-input02:checked {
+	background: #000000;
+}
+.cp_ipcheck .option-input02:checked::before {
+	font-size: 10px;
+	line-height: 20px;
+	position: absolute;
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	content: '✔';
+	text-align: center;
+}
+.cp_ipcheck .option-input02:checked::after {
+	position: relative;
+	display: block;
+	content: '';
+	-webkit-animation: click-wave 0.65s;
+	        animation: click-wave 0.65s;
+	background:#000000;
 }
