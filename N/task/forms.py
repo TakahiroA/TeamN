@@ -1,5 +1,5 @@
 from django import forms
-from .models import Project, ProjectToUsers
+from .models import Project, ProjectToUsers, Subject
 from taskapp.forms import User
 
 """ プロジェクト作成 """
@@ -55,6 +55,16 @@ class ProjectUpdate(forms.ModelForm):
         self.fields['end_date'].widget.input_type="date"
         self.fields['url'].widget.input_type="string"
 
+class Subject_all(forms.ModelForm):
+    class Meta:
+        model = Subject
+        fields = (
+            'subject_name',
+        )
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['subject_name'].widget.input_type="string"
+     
 
 """ プロジェクト削除 """
 class ProjectDelete(forms.ModelForm):

@@ -1,25 +1,18 @@
 {% extends "base.html" %}
 {% block title %} TaskMan {% endblock %}
-{% block mainT %}  {{ project.0.name }} {% endblock %}
+{% block mainT %}  科目一覧 {% endblock %}
 {% block body %}
-
-<nav class=" navbar-dark bg-dark flex-md-nowrap p-0 header">
-    <a class="navbar-brand col-md-1 mr-0" href="/task/">戻る</a>
-    <a  class="navbar-brand col-md-2 mr-0" href="{% url 'task:our_project_detail' project.0.pk %}"> プロジェクト詳細 </a>
-    <a class="navbar-brand col-md-2 mr-0" href="{% url 'task:add_task' project.0.pk %}">タスク追加</a>
-    <div class="btn-group">
-        <div class="btn dropdown-toggle naviDrop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            メンバー
-        </div>
-            <div class="dropdown-menu dropdown-menu-right" >
-                <a class="dropdown-item" href="#"> {{ project.0.leader }} </a>
-                {% if member != None %}
-                    <div class="dropdown-divider"></div>
-                    {% for person in member %}
-                    <a class="dropdown-item" href="#"> {{ person }} </a>
-                    {% endfor %}
-                {% endif %}
+<div style="padding:20px 200px 0px 200px;" class="form-group">
+    
+    {% if subject != None %}
+    <form method="POST">
+        {{ subject.non_field_errors }}
+        {% for field in subject %}
+            <div>
+                <input type="checkbox" id="subject_check" name="subjects" value="{{ field.subject_cd }}">
+                <label for="subject_check">{{ field.subject_name }}</label>
             </div>
+<<<<<<< HEAD
         </div>
     </div>
 </nav>
@@ -53,4 +46,20 @@
     })
     </script>
 {% endif %}
+=======
+        {% endfor %}
+        
+       <button type="submit"><a href="/">フォロー </a></button>
+        <button><a href="/">戻る</a></button>
+    </form>
+    {% else %}
+            <h4>科目がありません</h4>
+    {% endif %}
+</div>
+
+
+
+
+
+>>>>>>> b507d8b1145d17087f1836f38d7c9ee9e66e82d9
 {% endblock %}

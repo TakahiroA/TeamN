@@ -16,8 +16,10 @@ class Project(models.Model):
         User,
         on_delete=models.CASCADE,
         related_name='leader',
-        verbose_name='科目名'
+        verbose_name='講師'
     )
+
+    
 
     start_date = models.DateField(
         null=True,
@@ -65,6 +67,31 @@ class Project(models.Model):
         default=False
     )
     
+class Subject(models.Model):
+    subject_cd= models.AutoField(
+        primary_key=True
+    )
+
+    subject_name = models.CharField(
+        max_length=25,
+        null=True,
+        blank=True,
+        verbose_name='科目名'
+    )
+
+class Follow(models.Model):
+    subject_cd= models.ForeignKey(
+        Subject,
+        on_delete=models.CASCADE
+    )
+
+    subject_name = models.CharField(
+        max_length=25,
+        null=True,
+        blank=True,
+        verbose_name='科目名'
+    )
+
 
 
 class Task(models.Model):
