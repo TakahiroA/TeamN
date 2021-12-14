@@ -109,6 +109,7 @@ ul, li {
 }
 
 
+
 #taskList ul li,#taskList ol li{
     border: solid 2px #C3DDEB;/*枠線*/
     background: #F4F8FA;/*背景色*/
@@ -146,4 +147,26 @@ ul, li {
 
 #taskAccordion li {
     cursor: pointer;
+}
+
+.box1{
+    padding: 2em;
+    margin: 1em auto;
+    width: 70%;
+    background-color: #fff;
+    border: solid 1px #000;
+   
+}
+
+.box2{
+    padding: 0.25em;
+    margin: 1em auto;
+    width: 80%;
+    background-color: #fff;
+    border: solid 1px #fff;
+}
+
+.simple-border1{
+    border-bottom: 1px solid #589BFE;
+    border-width: thick;
 }
