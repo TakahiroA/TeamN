@@ -150,12 +150,19 @@ ul, li {
 }
 
 .box1{
-    padding: 2em;
+    padding: 1.5em 2em;
     margin: 1em auto;
     width: 70%;
     background-color: #fff;
     border: solid 1px #000;
    
+   
+}
+
+.p2{
+    padding-left: 0.5em;
+    text-indent: -0.5em;
+
 }
 
 .box2{

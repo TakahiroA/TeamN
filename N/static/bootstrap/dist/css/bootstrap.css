@@ -2501,10 +2501,14 @@ fieldset:disabled a.btn {
   border-color: #007bff;
 }
 
-.btn-primary2 {
-  color: #fff;
-  background-color: #007bff;
-  border-color: ;
+.btn-chat {
+  color: #000;
+  background-color: #C3DDEB;
+  border-color: #C3DDEB;
+  width: 100px;
+  height: 60px;
+  margin-right: 10px;
+  white-space: inherit;
 }
 
 .btn-primary:hover {
