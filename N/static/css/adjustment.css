@@ -59,8 +59,9 @@
     background-color: #c3dfff; /*ボタン色*/
 }
 
-.project_area h4{
-    border-bottom: solid 3px rgb(3, 0, 161);
+.project_area div p{
+
+    display: inline-block;
 }
 
 .header {

@@ -1,9 +1,10 @@
 {% extends "base.html" %}
+{% load static %}
 {% block title %} TaskMan {% endblock %}
 {% block mainT %} タスク {% endblock %}
 {% block body %}
 
-<div class="text-center" style="margin: 10px;">
+<div class="text-center" style="margin-top: 20px;">
     <div class="form-group row justify-content-center">
         <button onclick="location.href='/task/ProjectPage/1/'" type="button" class=" btn text-dark w-40 mr-3" style="background-color: rgb(195,221,235);">期限内未提出</button>
         <img src="/static/img/スラッシュ.png" style="height: 25px; width: 25px;">　
@@ -15,28 +16,23 @@
             {% for lead in leader %}
                 {% if td_data < lead.end_date %}
                 <center>
-                    <a class="project_area"  href="{% url 'task:our_project' lead.pk %}">
+                    <a class="project_area"  href="{% url 'task:our_project' lead.pk %}" style="margin-bottom: 30px;">
                         <div >
-                            <h4>{{lead.name}}</h4>
-                            <p>科目名 : {{lead.leader}}</p>
+                        
+                            
+                            <span>{{lead.leader}}</span>
+                            【{{lead.name}}】
                             {% if lead.now_date != None %}
-                                <p>今の日付 : {{lead.now_date}}</p>
+                                <span>今の日付 : {{lead.now_date}}</span>
                             {% endif %}
-                            {% if lead.start_date != None %}
-                                <p>開始日 : {{lead.start_date}}</p>
-                            {% endif %}
+                            
                             {% if lead.end_date != None %}
-                                <p>終了日 : {{lead.end_date}}</p>
+                                <span>期限 : {{lead.end_date}}</span>
                             {% endif %}
-                            {% if lead.details != None %}
-                                <p>詳細 : {{lead.details}}</p>
-                            {% endif %}
-                            {% if lead.url != None %}
-                                <p>URL : {{lead.url}}</p>
-                            {% endif %}
+                            
                         </div>
                     </a>
-                
+                </center>
                     
                     {% endif %}
             {% endfor %}
@@ -45,7 +41,7 @@
         {% endif %}
         
                 </div>  
-            </center> 
+            
     
         
 
@@ -53,31 +49,26 @@
             {% for lead in leader %}
                 {% if td_data > lead.end_date %}
                 <center>
-                    <a class="project_area" href="{% url 'task:our_project_detail' lead.pk %}">
+                    <a class="project_area" href="{% url 'task:our_project_detail' lead.pk %}" style="margin-bottom: 30px;">
                         <div>
-                            <h4>{{lead.name}}</h4>
-                            <p>科目名 : {{lead.leader}}</p>
+                            
+                            <span>{{lead.leader}}</span>
+                            【{{lead.name}}】
                             {% if lead.now_date != None %}
-                                <p>今の日付 : {{lead.now_date}}</p>
+                                <span>今の日付 : {{lead.now_date}}</span>
                             {% endif %}
-                            {% if lead.start_date != None %}
-                                <p>開始日 : {{lead.start_date}}</p>
-                            {% endif %}
+                            
                             {% if lead.end_date != None %}
-                                <p>終了日 : {{lead.end_date}}</p>
+                                <span>期限 : {{lead.end_date}}</span>
                             {% endif %}
-                            {% if lead.details != None %}
-                                <p>詳細 : {{lead.details}}</p>
-                            {% endif %}
-                            {% if lead.url != None %}
-                                <p>URL : {{lead.url}}</p>
-                            {% endif %}
+                            
                         </div>
                     </a>
+                </center>
                  {% endif %}
             {% endfor %}
     </div>  
-    </center>
+    
     
         
     <a class="btn btn-outline-secondary" href="/task/build_project/">課題作成</a>
