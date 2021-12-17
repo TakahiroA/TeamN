@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.db.models.query import QuerySet
 from django.views import generic
 from django.contrib.sites.shortcuts import get_current_site
 from django.shortcuts import redirect, render, resolve_url
@@ -11,6 +12,7 @@ from .forms import ProjectCreate, Subject_all
 from .forms import ProjectUpdate
 from .forms import ProjectDelete
 from .forms import AddProjectMember
+from .forms import Follows
 from django.http.response import JsonResponse
 from django.core import serializers
 from .models import ProjectToUsers, Project, ProjectToTask, Task,Subject,Follow
@@ -20,6 +22,8 @@ import cgi # CGIモジュールのインポート
 import cgitb
 import sys
 from taskapp.models import Schedule
+import logging
+import sys
 
 
 
@@ -94,9 +98,11 @@ class ProjectUserOnlyMixin(UserPassesTestMixin):
 
 """ プロジェクトページ """
 class ProjectPage(LoginRequiredMixin, generic.TemplateView):
+    model = Subject,Follow
     template_name = 'task/our_project.html'
     form_class = Subject_all
-    
+    success_url ='/'
+
     def get_context_data(self, **kwargs):
         user = self.request.user
         context = super().get_context_data(**kwargs)
@@ -107,13 +113,31 @@ class ProjectPage(LoginRequiredMixin, generic.TemplateView):
         
         return context
 
-    def form_valid(self,request):
-        subject = request.POST.getlist('subjects')
-        for sub in subject:
-            sub_i = Subject.objects.filter(subject_cd=sub)
-            obj = Follow(subject_cd=sub_i.subject_cd,subject_name=sub_i.subject_name)
+    def post(self, request, *args, **kwargs):
+        check = request.POST.getlist('subjects')
+        for sub in check:
+            query = Subject.objects.filter(subject_cd=sub)  
+            obj = Follow(subject_cd=query[0].subject_cd,subject_name=query[0].subject_name)
             obj.save()
-        return super().form_valid(request)
+        return redirect('task:task_top')
+
+""" フォロー科目ページ """
+class FollowPage(LoginRequiredMixin, generic.TemplateView):
+    model = Follow
+    template_name = 'task/follow.html'
+    form_class = Follows
+    
+
+    def get_context_data(self, **kwargs):
+        user = self.request.user
+        context = super().get_context_data(**kwargs)
+        
+        follow = Follow.objects.all()
+        
+        context['follow'] = follow
+        
+        return context
+
         
 
 """ プロジェクトリーダ限定 """

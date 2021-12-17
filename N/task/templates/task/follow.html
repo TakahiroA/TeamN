@@ -1,20 +1,18 @@
 {% extends "base.html" %}
 {% block title %} TaskMan {% endblock %}
-{% block mainT %}  科目一覧 {% endblock %}
+{% block mainT %}  フォロー済み科目 {% endblock %}
 {% block body %}
 <div style="padding:20px 200px 0px 200px;" class="form-group">
     
-    {% if subject != None %}
+    {% if follow != None %}
     <form action="" method="POST">
         {% csrf_token %}
-        {{ subject.non_field_errors }}
-        {% for field in subject %}
+        {{ follow.non_field_errors }}
+        {% for field in follow %}
         <div>
-            <input type="checkbox"  name="subjects" value="{{ field.subject_cd }}">{{ field.subject_name }}
+            {{ field.subject_name }}
         </div>
         {% endfor %} 
-        <button type="submit">フォロー</button>
-        <button><a href="/">戻る</a></button>
     </form>
     {% else %}
             <h4>科目がありません</h4>

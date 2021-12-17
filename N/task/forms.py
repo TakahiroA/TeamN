@@ -1,5 +1,5 @@
 from django import forms
-from .models import Project, ProjectToUsers, Subject
+from .models import Project, ProjectToUsers, Subject,Follow
 from taskapp.forms import User
 
 """ プロジェクト作成 """
@@ -46,10 +46,24 @@ class Subject_all(forms.ModelForm):
     class Meta:
         model = Subject
         fields = (
-            'subject_name',
+            'subject_name','subject_cd'
         )
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs['class'] = 'form-control'
+        self.fields['subject_name'].widget.input_type="string"
+
+class Follows(forms.ModelForm):
+    class Meta:
+        model = Follow
+        fields = (
+            'subject_name','subject_cd'
+        )
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs['class'] = 'form-control'
         self.fields['subject_name'].widget.input_type="string"
      
 

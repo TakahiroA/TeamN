@@ -83,9 +83,8 @@ class Subject(models.Model):
     )
 
 class Follow(models.Model):
-    subject_cd= models.ForeignKey(
-        Subject,
-        on_delete=models.CASCADE
+    subject_cd= models.AutoField(
+        primary_key=True
     )
 
     subject_name = models.CharField(
