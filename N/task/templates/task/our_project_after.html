@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %} TaskMan {% endblock %}
+{% block mainT %}  {{ project.0.name }} {% endblock %}
+{% block body %}
+
+<nav class=" navbar-dark bg-dark flex-md-nowrap p-0 header">
+    <a class="navbar-brand col-md-1 mr-0" href="/task/">戻る</a>
+    <a  class="navbar-brand col-md-2 mr-0" href="{% url 'task:our_project_detail' project.0.pk %}"> プロジェクト詳細 </a>
+    <a class="navbar-brand col-md-2 mr-0" href="{% url 'task:add_task' project.0.pk %}">タスク追加</a>
+    <div class="btn-group">
+        <div class="btn dropdown-toggle naviDrop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            メンバー
+        </div>
+            <div class="dropdown-menu dropdown-menu-right" >
+                <a class="dropdown-item" href="#"> {{ project.0.leader }} </a>
+                {% if member != None %}
+                    <div class="dropdown-divider"></div>
+                    {% for person in member %}
+                    <a class="dropdown-item" href="#"> {{ person }} </a>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!--切り替え用ボタン-->
+<div class="text-center">
+    <button onclick="location.href='our_project.html" type="button" class=" btn text-dark w-25 mr-3" style="background-color: rgb(195,221,235);">期限内未提出</button>
+    <img src="/static/img/スラッシュ.png" style="height: 25px; width: 25px;">　
+    <button onclick="location.href='our_project_after.html" type="button" class="btn text-dark w-25" style="background-color: rgb(244,248,250)">期限切れ未提出</button>
+</div>
+
+
+{% if task == None %}
+<div id="taskList">
+    {% if task == None %}
+        <ul>
+            <li>タスクがありません</li>   
+            <li>タスクがありません</li>
+            <li>タスクがありません</li>     
+            <li>タスクがありません</li>
+        </ul>
+    {% else %}
+        <ul id="taskAccordion">
+            {% for content in task %}
+
+                <li class="selectTask task{{content.priolity}}" value="{{content.task_cd}}"> {{content.task_name}} </li> 
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+</div>
+{% endif %}
+{% endblock %}

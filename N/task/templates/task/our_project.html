@@ -12,10 +12,43 @@
         <div>
             <input type="checkbox"  name="subjects" value="{{ field.subject_cd }}">{{ field.subject_name }}
         </div>
+<<<<<<< HEAD
         {% endfor %} 
         <button type="submit">フォロー</button>
         <button><a href="/">戻る</a></button>
     </form>
+=======
+            <div class="dropdown-menu dropdown-menu-right" >
+                <a class="dropdown-item" href="#"> {{ project.0.leader }} </a>
+                {% if member != None %}
+                    <div class="dropdown-divider"></div>
+                    {% for person in member %}
+                    <a class="dropdown-item" href="#"> {{ person }} </a>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!--切り替え用ボタン-->
+<div class="text-center">
+    <button onclick="location.href='/task/ProjectPage/1/'" type="button" class=" btn text-dark w-25 mr-3" style="background-color: rgb(195,221,235);">期限内未提出</button>
+    <img src="/static/img/スラッシュ.png" style="height: 25px; width: 25px;">　
+    <button onclick="location.href='/task/ProjectPage/3/'" type="button" class="btn text-dark w-25" style="background-color: rgb(244,248,250)">期限切れ未提出</button>
+</div>
+
+aaa
+{% if task == None %}
+<div id="taskList">
+    {% if task == None %}
+        <ul>
+            <li>タスクがありません</li>   
+            <li>タスクがありません</li>
+            <li>タスクがありません</li>     
+            <li>タスクがありません</li>
+        </ul>
+>>>>>>> 50f1087e1a57c1cd6576e7295bdcdecaab1db350
     {% else %}
             <h4>科目がありません</h4>
     {% endif %}
