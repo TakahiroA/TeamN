@@ -9,21 +9,11 @@
         {% csrf_token %}
         {{ subject.non_field_errors }}
         {% for field in subject %}
-<<<<<<< HEAD
         <div>
             <input type="checkbox"  name="subjects" value="{{ field.subject_cd }}">{{ field.subject_name }}
         </div>
         {% endfor %} 
         <button type="submit">フォロー</button>
-=======
-            <div class="cp_ipcheck">
-                <input type="checkbox" class="option-input02 checkbox" id="subject_check" name="subjects" value="{{ field.subject_cd }}">
-                <label for="subject_check">{{ field.subject_name }}</label>
-            </div>
-        {% endfor %}
-        
-       <button type="submit"><a href="/">フォロー </a></button>
->>>>>>> 69831cc8244f5ad528a85e8b8872c12d2554c57c
         <button><a href="/">戻る</a></button>
     </form>
     {% else %}
