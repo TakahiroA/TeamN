@@ -5,6 +5,7 @@ app_name = 'task'
 
 urlpatterns = [
     path('', views.taskTop.as_view(), name='task_top'),
+    path('task_top_out/', views.taskTop_out.as_view(), name='task_top_out'),
     path('build_project/', views.BuildProject.as_view(), name='build_project'),
     path('ProjectPage/', views.ProjectPage.as_view(), name='our_project'),
     path('FollowPage/', views.FollowPage.as_view(), name='follow'),

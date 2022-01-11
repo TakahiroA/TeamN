@@ -58,6 +58,34 @@ class taskTop(LoginRequiredMixin, generic.TemplateView):
 
         return context
 
+""" トップページ期限切れ """
+class taskTop_out(LoginRequiredMixin, generic.TemplateView):
+    template_name = 'task/task_top_out.html'
+    redirect_field_name = 'redirect_to'
+
+    def get_context_data(self, **kwargs):
+        user = self.request.user
+        context = super().get_context_data(**kwargs)
+
+        project_user = ProjectToUsers.objects.filter(user_cd=user.pk)
+        leader = Project.objects.filter(leader=user.pk, is_delete=0)
+        now_data = datetime.date.today()
+        context["td_data"] = now_data
+
+
+
+        if len(project_user) > 0:
+            context['member'] = []
+            for person in project_user:
+                member = Project.objects.filter(project_cd=person.project_cd.pk, is_delete=0)
+                context['member'].extend(member)
+        else:
+            context['member'] = None
+
+        context['leader'] = leader if len(leader) > 0 else None
+
+        return context
+
 """ プロジェクト作成 """
 class BuildProject(LoginRequiredMixin, generic.CreateView):
     model = Project
