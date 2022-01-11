@@ -150,12 +150,26 @@ ul, li {
 }
 
 .box1{
+<<<<<<< HEAD
     padding: 2em;
+=======
+    padding: 1.5em 2em;
+>>>>>>> 100f4291c465dbdc37a5000943b55b8fa7d9ee3b
     margin: 1em auto;
     width: 70%;
     background-color: #fff;
     border: solid 1px #000;
    
+<<<<<<< HEAD
+=======
+   
+}
+
+.p2{
+    padding-left: 0.5em;
+    text-indent: -0.5em;
+
+>>>>>>> 100f4291c465dbdc37a5000943b55b8fa7d9ee3b
 }
 
 .box2{
@@ -169,6 +183,7 @@ ul, li {
 .simple-border1{
     border-bottom: 1px solid #589BFE;
     border-width: thick;
+<<<<<<< HEAD
 }
 
 /* ボタンホバー */
@@ -242,3 +257,6 @@ a.check_button:active{
 	        animation: click-wave 0.65s;
 	background:#000000;
 }
+=======
+}
+>>>>>>> 100f4291c465dbdc37a5000943b55b8fa7d9ee3b

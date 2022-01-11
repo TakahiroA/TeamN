@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 {% block title %} TaskMan {% endblock %}
 {% block mainT %} {{ project.0.name }} 詳細情報 {% endblock %}
 {% block body %}
@@ -7,11 +8,49 @@
         <div class="box2">
             <div style="text-align:center;">
                 <span style="font-size:230%;">{{ project.0.name }}(科目名)</span>
+<<<<<<< HEAD
                 <span style="font-size: 230%; margin-left: 18%;">講師名:{{ project.0.leader }}</span> 
+=======
+                <span style="font-size: 230%; margin-left: 19%;">講師名:{{ project.0.leader }}</span> 
+>>>>>>> 100f4291c465dbdc37a5000943b55b8fa7d9ee3b
             </div>
         </div>
     </div>
     <table class="table">
+<<<<<<< HEAD
+=======
+
+        
+        
+        <div class="kadai-detail" style=" font-size: 150%;">
+            <span> 
+                <div class="box1">{{ project.0.details }}</div>
+            </span>
+            <div style="text-align: center;">
+                <span>
+                    <p><img src="/static/img/印.png" style="height: 35px; width: 35px;">  <a href="{{ project.0.url }}" target="_blank">{{ project.0.url }}</a></p>
+                </span>
+            </div>
+            <div style="text-align:match-parent;text-align: center;">
+                <span>
+                    <span>提出期限:</span>
+                    <span style="color:red;">{{ project.0.end_date }}</span>
+                </span>
+            </div>
+            <a href="{% url 'task:our_project' project.0.pk %}" class="btn btn-chat" 
+            style=
+            "color: #000;
+            background-color: #C3DDEB;
+            border-color: #C3DDEB;
+            width: 100px;
+            height: 72px;
+            border-radius: 50%;
+            margin-left: 75%;
+            white-space: inherit;">チャットで質問</a>
+        </div>
+       
+    </table>
+>>>>>>> 100f4291c465dbdc37a5000943b55b8fa7d9ee3b
 
         <div class="kadai-detail" style="text-align: center; font-size: 150%;">
             <span> 
@@ -34,7 +73,14 @@
     <hr>
     <a href="{% url 'task:task_top' %}" class="btn btn-primary" style="width: 120px; margin-right:10px;">戻る</a>
     <a href="{% url 'task:our_project_update' project.0.pk %}" class="btn btn-primary ">変更</a>
+<<<<<<< HEAD
     <a href="{% url 'task:our_project_delete' project.0.pk %}" class="delete-btn btn btn-primary">削除</a>
     <a href="" class="btn btn-primary" style="width: 150px; margin-right:10px;">チャットで質問</a>
+=======
+    {% if user == project.0.leader %}
+        <a href="{% url 'task:our_project_delete' project.0.pk %}" class="delete-btn btn btn-primary">削除</a>
+    {% endif %}
+    
+>>>>>>> 100f4291c465dbdc37a5000943b55b8fa7d9ee3b
 </div>
 {% endblock %}

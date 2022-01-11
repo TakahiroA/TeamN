@@ -7,7 +7,11 @@
         <h2 class="eleTitle">期限内未提出</h2>
         {% if leader != None %}
             {% for lead in leader %}
+<<<<<<< HEAD
                 {% if td_data < lead.end_date %}
+=======
+                {% if td_data <= lead.end_date %}
+>>>>>>> 100f4291c465dbdc37a5000943b55b8fa7d9ee3b
                     <a class="project_area" href="{% url 'task:our_project_detail' lead.pk %}">
                         <div>
                             <h4>{{lead.name}}</h4>
