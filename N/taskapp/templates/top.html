@@ -44,11 +44,10 @@
                     {% else %}
                         {{ day.day }}
                     {% endif %}
-
+                    <br>
                     {% for schedule in schedules %}
-                    <a href="{% url 'task:task_top' %}">
-                        <p>{{ schedule.summary }}</p>
-                    </a>
+                    <a class="btn btn-primary" href="{% url 'task:task_top' %}">{{ schedule.summary }}</a>
+                    <br>
                     {% endfor %}
                 </div>
                 </td>

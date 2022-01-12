@@ -242,3 +242,8 @@ a.check_button:active{
 	        animation: click-wave 0.65s;
 	background:#000000;
 }
+br {
+    display: block;
+    content: "";
+    margin: 2px;
+    }

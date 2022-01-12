@@ -28,13 +28,18 @@
                     <span style="color:red;">{{ project.0.end_date }}</span>
                 </span>
             </div>
+            <input type="checkbox"  name="subjects" value="{{ field.subject_cd }}">{{ field.subject_name }}
+            <div style="text-align:right; margin-right: 150px">
+            <img src="/static/img/チャット.png">
+            </div>
         </div>
-       
     </table>
     <hr>
-    <a href="{% url 'task:task_top' %}" class="btn btn-primary" style="width: 120px; margin-right:10px;">戻る</a>
-    <a href="{% url 'task:our_project_update' project.0.pk %}" class="btn btn-primary ">変更</a>
-    <a href="{% url 'task:our_project_delete' project.0.pk %}" class="delete-btn btn btn-primary">削除</a>
-    <a href="" class="btn btn-primary" style="width: 150px; margin-right:10px;">チャットで質問</a>
+    <center>
+        <a href="{% url 'task:task_top' %}" class="btn btn-primary">戻る</a>
+        <a href="{% url 'task:our_project_update' project.0.pk %}" class="btn btn-primary ">変更</a>
+        <a href="{% url 'task:our_project_delete' project.0.pk %}" class="delete-btn btn btn-primary">削除</a>
+        <a><button type="submit" class="btn btn-primary" style="margin-left: 200px"> 提出済みに登録</button></a>
+    </center>
 </div>
 {% endblock %}

@@ -1,12 +1,13 @@
 {% extends "base.html" %}
-{% block title %} TaskApp {% endblock %}
-{% block mainT %} ログイン {% endblock %}
-{% block mainL %}User : {{ user.get_username }}{% endblock %}
-{% block auth %}{% endblock %}
 {% block body %}
+<body style="background-color:#F4F8FA;">
 <div style='padding-top: 50px;'>
+    <div style="text-align:left; margin-left: 150px; margin-bottom: 50px;">
+        <img src="/static/img/タイトル.png" width="30%" height="50%">
+        </div>
     <form action="" method="POST">
         <div class="col-md-6 offset-md-3">
+            
             <div class="card">
                 <div class="card-body">
                     {{ form.non_field_errors }}
@@ -15,15 +16,18 @@
                         {{ field.errors }}
                         <hr>
                     {% endfor %}
-                    <button type="submit" class="btn btn-lg btn-primary btn-block" >ログイン</button>
-                    <input type="hidden" name="next" value="{{ next }}" />
-                    {% csrf_token %}
                 </div>
             </div>
             <div class="authElement">
-                <a class="btn btn-outline-secondary" href="/registration/">アカウント登録</a>
+                <a><button type="submit" class="btn btn-primary" style="text-align:center; width: 150px">ログイン</button>
+                    <input type="hidden" name="next" value="{{ next }}" />
+                    {% csrf_token %}
+                </a>
+                <p></p>
+                <a class="btn" href="/registration/" style="background-color: #C3DDEB; text-align:center; width: 150px;">新規登録</a>
             </div>
         </div>
     </form>
 </div>
+</body>
 {% endblock %}
