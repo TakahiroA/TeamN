@@ -4,20 +4,26 @@
 {% block mainL %}User : {{ user.get_username }}{% endblock %}
 {% block auth %}{% endblock %}
 {% block body %}
-<div style="padding:20px 200px 0px 200px;">
+<body style="background-color:#F4F8FA;">
+    <div style='padding-top: 50px;'>
+        <div style="text-align:left; margin-left: 150px; margin-bottom: 30px;">
+            <img src="/static/img/新規登録.png" width="30%" height="50%">
+        </div>
+<div style="padding:0px 200px 0px 200px;">
     <form action="" method="POST">
         {{ form.non_field_errors }}
         {% for field in form %}
         <div class="form-group">
-            <label for="{{ field.id_for_label }}">{{ field.label_tag }}</label>
+            <label for="{{ field.id_for_label }}"><font color="#589BFE">{{ field.label_tag }}</font></label>
             {{ field }}
             <span style="color:red">{{ field.errors }}</span>
         </div>
         {% endfor %}
         {% csrf_token %}
         <div class="authElement">
-            <button type="submit" class="btn btn-primary btn-lg">登録</button>
+            <button type="submit" class="btn btn-primary btn-lg"><font color="#000">登録</font></button>
         </div>
     </form>
 </div>
+</body>
 {% endblock %}

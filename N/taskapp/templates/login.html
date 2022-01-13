@@ -5,23 +5,22 @@
 <div style='padding-top: 50px;'>
     <div style="text-align:left; margin-left: 150px; margin-bottom: 50px;">
         <img src="/static/img/タイトル.png" width="30%" height="50%">
-        </div>
+    </div>
 
     <form action="" method="POST">
         <div class="col-md-6 offset-md-3">
             
-            <div class="card">
-                <div class="card-body">
-                    {{ form.non_field_errors }}
-                    {% for field in form %}
-                        {{ field }}
-                        {{ field.errors }}
-                        <hr>
-                    {% endfor %}
-                </div>
+           
+            <div class="form-group">
+                {{ form.non_field_errors }}
+                {% for field in form %}
+                    {{ field }}
+                    {{ field.errors }}
+                    <p style="margin-top:40px"></p>
+                {% endfor %}
             </div>
             <div class="authElement">
-                <a><button type="submit" class="btn btn-primary" style="text-align:center; width: 150px">ログイン</button>
+                <a><button type="submit" class="btn btn-primary" style="text-align:center; width: 150px"><font color="#000">ログイン</font></button>
                     <input type="hidden" name="next" value="{{ next }}" />
                     {% csrf_token %}
                 </a>

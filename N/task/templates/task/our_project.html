@@ -13,37 +13,13 @@
         <div>
             <input type="checkbox"  name="subjects" value="{{ field.subject_cd }}">{{ field.subject_name }}
         </div>
-<<<<<<< HEAD
+
         {% endfor %} 
         <button type="submit">フォロー</button>
-=======
-        <div class="dropdown-menu dropdown-menu-right" >
-            <a class="dropdown-item" href="#"> {{ project.0.leader }} </a>
-            {% if member != None %}
-                <div class="dropdown-divider"></div>
-                {% for person in member %}
-                <a class="dropdown-item" href="#"> {{ person }} </a>
-                {% endfor %}
-            {% endif %}
-        </div>
-    </div>
-</nav>
->>>>>>> e83c29852a4883926d06c56d9b4bfe9e59475a91
-
-        <button><a href="/">戻る</a></button>
+    <button><a href="/">戻る</a></button>
     </form>
     {% else %}
-<<<<<<< HEAD
             <h4>科目がありません</h4>
-=======
-        <ul id="taskAccordion">
-            <li>タスクがあります</li>
-            {% for content in task %}
-
-                <li class="selectTask task{{content.priolity}}" value="{{content.task_cd}}"> {{content.task_name}} </li> 
-            {% endfor %}
-        </ul>
->>>>>>> e83c29852a4883926d06c56d9b4bfe9e59475a91
     {% endif %}
 </div>
 

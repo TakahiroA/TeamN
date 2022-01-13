@@ -6,7 +6,7 @@
 /*左の背景*/
 .drawr {
     display: none;
-    background-color:rgba(195,221,235, 0.95);
+    background-color:#F4F8FA;
     position: absolute;
     top: 0px;
     left:0;
@@ -18,7 +18,7 @@
 /*左の背景の長さ*/
 .barmenu{
     width:220px;
-    height:100px;
+    height:136px;
     margin-top:10px;
 }
 
