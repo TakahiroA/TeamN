@@ -12,12 +12,13 @@
 
         <center>
             <a class="project_area">
-                <div>
-                    <input type="checkbox"  name="subjects" value="{{ field.subject_cd }}">{{ field.subject_name }}
+                <div style="text-align: right;">
+                    <label class="ECM_CheckboxInput">{{ field.subject_name }}<input class="ECM_CheckboxInput-Input" type="checkbox"name="subjects" value="{{ field.subject_cd }}"><span class="ECM_CheckboxInput-DummyInput"></span></label>
                 </div>
             </a>
         </center>
         {% endfor %} 
+        
         <button type="submit">フォロー</button>
     <button><a href="/">戻る</a></button>
     </form>
