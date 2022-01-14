@@ -69,6 +69,10 @@ class Project(models.Model):
     is_delete = models.BooleanField(
         default=False
     )
+
+    is_already = models.BooleanField(
+        default=False
+    )
     
 class Subject(models.Model):
     subject_cd= models.AutoField(
@@ -92,6 +96,18 @@ class Follow(models.Model):
         null=True,
         blank=True,
         verbose_name='科目名'
+    )
+
+class Already(models.Model):
+    project_cd= models.AutoField(
+        primary_key=True
+    )
+
+    name = models.CharField(
+        max_length=25,
+        null=True,
+        blank=True,
+        verbose_name='課題名'
     )
 
 

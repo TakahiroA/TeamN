@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %} TaskMan {% endblock %}
+{% block mainT %}  提出済み課題 {% endblock %}
+{% block body %}
+        {% if leader != None  %}
+            {% if is_already == true %}
+                {% for lead in leader %}
+                    <center>
+                        <a class="project_area"  href="{% url 'task:our_project_detail' lead.pk %}" style="margin-bottom: 30px;">
+                            <div>
+                            
+                                
+                                <span>{{lead.leader}}</span>
+                                【{{lead.name}}】
+
+                                {% if lead.now_date != None %}
+                                    <span>今の日付 : {{lead.now_date}}</span>
+                                {% endif %}
+                                
+                                {% if lead.end_date != None %}
+                                    <span>期限 : {{lead.end_date}}</span>
+                                {% endif %}
+                                
+                            </div>
+                        </a>
+                    </center>
+                {% endfor %}
+            {% endif %}  
+        {% else %}
+            <h4>課題がありません</h4>
+        {% endif %} 
+        
+
+
+
+
+
+{% endblock %}

@@ -13,9 +13,10 @@ from .forms import ProjectUpdate
 from .forms import ProjectDelete
 from .forms import AddProjectMember
 from .forms import Follows
+from .forms import Alreadys
 from django.http.response import JsonResponse
 from django.core import serializers
-from .models import ProjectToUsers, Project, ProjectToTask, Task,Subject,Follow
+from .models import ProjectToUsers, Project, ProjectToTask, Task,Subject,Follow,Already
 from django.views.decorators.csrf import csrf_exempt 
 import datetime
 import cgi # CGIモジュールのインポート
@@ -166,6 +167,36 @@ class FollowPage(LoginRequiredMixin, generic.TemplateView):
         
         return context
 
+""" 提出済み課題ページ """
+class AlreadyPage(LoginRequiredMixin, generic.TemplateView):
+    
+    template_name = 'task/already.html'
+    form_class = Alreadys
+    
+
+    def get_context_data(self, **kwargs):
+        user = self.request.user
+        context = super().get_context_data(**kwargs)
+
+        project_user = ProjectToUsers.objects.filter(user_cd=user.pk)
+        leader = Project.objects.filter(leader=user.pk, is_delete=0)
+        now_data = datetime.date.today()
+        context["td_data"] = now_data
+
+
+
+        if len(project_user) > 0:
+            context['member'] = []
+            for person in project_user:
+                member = Project.objects.filter(project_cd=person.project_cd.pk, is_delete=0)
+                context['member'].extend(member)
+        else:
+            context['member'] = None
+
+        context['leader'] = leader if len(leader) > 0 else None
+
+        return context
+
         
 
 """ プロジェクトリーダ限定 """
@@ -193,6 +224,7 @@ class ProjectLeaderOnlyMixin(UserPassesTestMixin):
 class ProjectDetail(ProjectUserOnlyMixin, generic.DetailView):
     model = Project
     template_name = 'task/project_detail.html'
+    
 
     def get_context_data(self, **kwargs):
         user = self.request.user
@@ -206,6 +238,15 @@ class ProjectDetail(ProjectUserOnlyMixin, generic.DetailView):
         context['project'] = project if len(project) > 0 else None
 
         return context
+
+    def already_button(request):
+        if request.method == "POST":
+            if "already_button" in request.POST:
+                project = Project.objects.filter(is_delete=0)
+                project[0].is_already=1
+                project.save()
+        return redirect('task:task_top')
+
 
 
 """ プロジェクト更新ページ """
@@ -228,10 +269,9 @@ class ProjectDelete(ProjectLeaderOnlyMixin, generic.UpdateView):
     def get_context_data(self, **kwargs):
         user = self.request.user
         context = super().get_context_data(**kwargs)
-
         p_user = ProjectToUsers.objects.filter(project_cd=self.kwargs["pk"])
         project = Project.objects.filter(project_cd=self.kwargs["pk"], is_delete=0)
-
+        Schedule.objects.filter(summary=project[0].name).delete()
         if len(p_user) > 0:
             context['member'] = []
             for person in p_user:
