@@ -45,7 +45,7 @@
                     {% endif %}
                     <br>
                     {% for schedule in schedules %}
-                    {% if now > day %}
+                    {% if day < near %}
                         <a class="btn" href="{% url 'task:task_top' %}" style="background-color: #FF6600; text-align:center;">{{ schedule.summary }}</a>
                     {% else %}
                         <a class="btn" href="{% url 'task:task_top' %}" style="background-color: #589BFE; text-align:center;">{{ schedule.summary }}</a>

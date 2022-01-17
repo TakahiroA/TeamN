@@ -168,10 +168,10 @@ ul, li {
 
 
 .ECM_CheckboxInput {
-    padding: 12px 8px;
     display: flex;
     align-items: center;
-    cursor: pointer;
+    text-align: right
+    ;
   }
   .ECM_CheckboxInput-Input {
     margin: 0;
@@ -179,12 +179,7 @@ ul, li {
     opacity: 0;
   }
   
-  .ECM_CheckboxInput:hover > .ECM_CheckboxInput-DummyInput{
-    transform: scale(1.1);
-  }
-  .ECM_CheckboxInput-Input:focus + .ECM_CheckboxInput-DummyInput{
-    transform: scale(1.1);
-  }
+
   .ECM_CheckboxInput-Input:checked + .ECM_CheckboxInput-DummyInput {
     background: #000;
   }
@@ -192,7 +187,7 @@ ul, li {
     content: "";
     display: block;
     position: absolute;
-    top: 50%;
+    top: 52%;
     left: 50%;
     width: 35%;
     height: 4px;
@@ -205,7 +200,7 @@ ul, li {
     content: "";
     display: block;
     position: absolute;
-    top: 50%;
+    top: 52%;
     left: 50%;
     width: 70%;
     height: 4px;
@@ -214,24 +209,20 @@ ul, li {
     transform-origin: 2px 2px;
     background: #FFFFFF;
   }
+  
   .ECM_CheckboxInput-DummyInput {
     position: relative;
-    top: 0;
-
+    top: -3px;
+    margin-bottom: 10px;
     display: block;
-    width: 32px;
-    height: 32px;
+    width: 28px;
+    height: 28px;
     border: solid 2px transparent;
     background: rgba(0, 0, 0, .15);
     border-radius: 50%;
     transition: all .15s linear;
   }
-  .ECM_CheckboxInput-LabelText {
-    margin-left: 12px;
-    display: block;
-    font-size: 18px;
-    font-weight: bold;
-  }
+
 br {
     display: block;
     content: "";

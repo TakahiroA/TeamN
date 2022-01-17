@@ -62,6 +62,7 @@ class MonthCalendarMixin(BaseCalendarMixin):
         current_month = self.get_current_month()
         calendar_data = {
             'now': datetime.date.today(),
+            'near': datetime.date.today() + datetime.timedelta(days=4),
             'month_days': self.get_month_days(current_month),
             'month_current': current_month,
             'month_previous': self.get_previous_month(current_month),

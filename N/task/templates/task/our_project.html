@@ -3,20 +3,18 @@
 {% block mainT %}  科目追加 {% endblock %}
 {% block body %}
 <div style="padding:20px 200px 0px 200px;" class="form-group">
-    
+    <center>
+    <h2 style="margin-bottom: 20px;"><font color="#589BFE">検索結果</font></h2>
     {% if subject != None %}
     <form action="" method="POST">
         {% csrf_token %}
         {{ subject.non_field_errors }}
         {% for field in subject %}
-
-        <center>
             <a class="project_area">
-                <div style="text-align: right;">
-                    <label class="ECM_CheckboxInput">{{ field.subject_name }}<input class="ECM_CheckboxInput-Input" type="checkbox"name="subjects" value="{{ field.subject_cd }}"><span class="ECM_CheckboxInput-DummyInput"></span></label>
+                <div style="text-align: center;">
+                    {{ field.subject_name }}　　　　／　　　　{{ user.get_username }}<label class="ECM_CheckboxInput" style="float:right"><input class="ECM_CheckboxInput-Input" type="checkbox"name="subjects" value="{{ field.subject_cd }}" style="margin-bottom: 20px;"><span class="ECM_CheckboxInput-DummyInput"></span></label>
                 </div>
             </a>
-        </center>
         {% endfor %} 
         
         <button type="submit">フォロー</button>
@@ -25,6 +23,7 @@
     {% else %}
             <h4>科目がありません</h4>
     {% endif %}
+    </center>
 </div>
 
 {% endblock %}
