@@ -14,25 +14,25 @@
         {% if leader != None %}
             {% for lead in leader %}
             {% if td_data > lead.end_date %}
-            {% if is_already == false %}
-            <center>
-                <a class="project_area" href="{% url 'task:our_project_detail' lead.pk %}" style="margin-bottom: 30px;">
-                    <div>
-                        
-                        <span>{{lead.leader}}</span>
-                        【{{lead.name}}】
-                        {% if lead.now_date != None %}
-                            <span>今の日付 : {{lead.now_date}}</span>
-                        {% endif %}
-                        
-                        {% if lead.end_date != None %}
-                            <span>期限 : {{lead.end_date}}</span>
-                        {% endif %}
-                        
-                    </div>
-                </a>
-            </center>
-            {% endif %}
+                {% if lead.is_already == 0 %}
+                <center>
+                    <a class="project_area" href="{% url 'task:our_project_detail' lead.pk %}" style="margin-bottom: 30px;">
+                        <div>
+                            
+                            <span>{{lead.leader}}</span>
+                            【{{lead.name}}】
+                            {% if lead.now_date != None %}
+                                <span>今の日付 : {{lead.now_date}}</span>
+                            {% endif %}
+                            
+                            {% if lead.end_date != None %}
+                                <span>期限 : {{lead.end_date}}</span>
+                            {% endif %}
+                            
+                        </div>
+                    </a>
+                </center>
+                {% endif %}
             {% endif %}
             {% endfor %}
         {% else %}

@@ -71,7 +71,8 @@ class Project(models.Model):
     )
 
     is_already = models.BooleanField(
-        default=False
+        default=False,
+        verbose_name='提出済み'
     )
     
 class Subject(models.Model):

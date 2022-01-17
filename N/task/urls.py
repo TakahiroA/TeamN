@@ -12,6 +12,7 @@ urlpatterns = [
     path('AlreadyPage/', views.AlreadyPage.as_view(), name='already'),
     path('ProjectPage/<int:pk>/detail', views.ProjectDetail.as_view(), name='our_project_detail'),
     path('ProjectPage/<int:pk>/update', views.ProjectUpdate.as_view(), name='our_project_update'),
+    path('ProjectPage/<int:pk>/task_update', views.TaskUpdate.as_view(), name='task_update'),
     path('ProjectPage/<int:pk>/delete', views.ProjectDelete.as_view(), name='our_project_delete'),
     path('ProjectPage/<int:pk>/update_member', views.UpdateProjectMember.as_view(), name='update_member'),
     path('ProjectPage/<int:pk>/delete_member', views.ProjectDeleteMember.as_view(), name='our_project_delete_member'),

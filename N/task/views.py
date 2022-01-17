@@ -14,6 +14,7 @@ from .forms import ProjectDelete
 from .forms import AddProjectMember
 from .forms import Follows
 from .forms import Alreadys
+from .forms import TaskUpdate
 from django.http.response import JsonResponse
 from django.core import serializers
 from .models import ProjectToUsers, Project, ProjectToTask, Task,Subject,Follow,Already
@@ -239,15 +240,6 @@ class ProjectDetail(ProjectUserOnlyMixin, generic.DetailView):
 
         return context
 
-    def already_button(request):
-        if request.method == "POST":
-            if "already_button" in request.POST:
-                project = Project.objects.filter(is_delete=0)
-                project[0].is_already=1
-                project.save()
-        return redirect('task:task_top')
-
-
 
 """ プロジェクト更新ページ """
 class ProjectUpdate(ProjectUserOnlyMixin, generic.UpdateView):
@@ -258,6 +250,40 @@ class ProjectUpdate(ProjectUserOnlyMixin, generic.UpdateView):
 
     def get_success_url(self):
         return resolve_url('task:our_project_detail', pk=self.kwargs["pk"])
+
+""" 提出済み更新ページ """
+class TaskUpdate(ProjectUserOnlyMixin, generic.UpdateView):
+    model = Project
+    template_name = 'task/task_update.html'
+    form_class = TaskUpdate
+
+    def get_context_data(self, **kwargs):
+        user = self.request.user
+        context = super().get_context_data(**kwargs)
+        p_user = ProjectToUsers.objects.filter(project_cd=self.kwargs["pk"])
+        project = Project.objects.filter(project_cd=self.kwargs["pk"], is_delete=0)
+        
+
+        if len(p_user) > 0:
+            context['member'] = []
+            for person in p_user:
+                member = User.objects.filter(pk=person.user_cd.pk)
+                context['member'].extend(member)
+        else:
+            context['member'] = None
+
+        context['project'] = project if len(project) > 0 else None
+
+        return context
+
+    def get_initial(self): 
+
+        return {'is_already': True,}
+
+    def get_success_url(self):
+        project = Project.objects.filter(project_cd=self.kwargs["pk"], is_delete=0)
+        Schedule.objects.filter(summary=project[0].name).delete()
+        return resolve_url('task:task_top')
 
 
 """ プロジェクト削除ページ """

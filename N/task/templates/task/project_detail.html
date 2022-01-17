@@ -38,10 +38,7 @@
             <a href="{% url 'task:task_top' %}" class="btn btn-primary">戻る</a>
             <a href="{% url 'task:our_project_update' project.0.pk %}" class="btn btn-primary ">変更</a>
             <a href="{% url 'task:our_project_delete' project.0.pk %}" class="delete-btn btn btn-primary">削除</a>
-        <form method="post">
-            {% csrf_token %}
-            <a><button type="submit" class="btn btn-primary" style="margin-left: 200px" name="already_button"> 提出済みに登録</button></a>
-        </form>
+            <a href="{% url 'task:task_update' project.0.pk %}" class="btn btn-primary ">提出済みに変更</a>
     </center>
 </div>
 {% endblock %}
