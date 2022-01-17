@@ -166,82 +166,63 @@ ul, li {
     border: solid 1px #fff;
 }
 
-.simple-border1{
-    border-bottom: 1px solid #589BFE;
-    border-width: thick;
-}
 
-/* ボタンホバー */
-a.check_button:hover{ 
-	cursor: pointer;
-}
- 
-/* ボタンをクリックした瞬間 */
-a.check_button:active{
-	position: relative;
-	top: 3px;
-}
+.ECM_CheckboxInput {
+    display: flex;
+    align-items: center;
+    text-align: right
+    ;
+  }
+  .ECM_CheckboxInput-Input {
+    margin: 0;
+    width: 0;
+    opacity: 0;
+  }
+  
 
-.cp_ipcheck {
-	text-align: center;
+  .ECM_CheckboxInput-Input:checked + .ECM_CheckboxInput-DummyInput {
+    background: #000;
+  }
+  .ECM_CheckboxInput-Input:checked + .ECM_CheckboxInput-DummyInput::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 52%;
+    left: 50%;
+    width: 35%;
+    height: 4px;
+    border-radius: 2px;
+    transform: translate(-6px, 5px) rotateZ(-135deg);
+    transform-origin: 2px 2px;
+    background: #FFFFFF;
+  }
+  .ECM_CheckboxInput-Input:checked + .ECM_CheckboxInput-DummyInput::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 52%;
+    left: 50%;
+    width: 70%;
+    height: 4px;
+    border-radius: 2px;
+    transform: translate(-6px, 5px) rotateZ(-45deg);
+    transform-origin: 2px 2px;
+    background: #FFFFFF;
+  }
+  
+  .ECM_CheckboxInput-DummyInput {
     position: relative;
-    top: -27px;
-}
-@keyframes click-wave {
-	0% {
-		position: relative;
-		width: 20px;
-		height: 20px;
-		opacity: 0.35;
-	}
-	100% {
-		width: 150px;
-		height: 150px;
-		margin-top: -70px;
-		margin-left: -65px;
-		opacity: 0;
-	}
-}
-.cp_ipcheck .option-input02 {
-	position: relative;
-	bottom: 0;
-    float: right;
-	width: 20px;
-	height: 20px;
-	margin-left: auto;
-	cursor: pointer;
-	transition: all 0.15s ease-out 0s;
-	color: #ffffff;
-	border: none;
-	outline: none;
-	background: #d7cbcb;
-	-webkit-appearance: none;
-	        appearance: none;
-}
-.cp_ipcheck .option-input02:hover {
-	background: #d6a9a9;
-}
-.cp_ipcheck .option-input02:checked {
-	background: #000000;
-}
-.cp_ipcheck .option-input02:checked::before {
-	font-size: 10px;
-	line-height: 20px;
-	position: absolute;
-	display: inline-block;
-	width: 20px;
-	height: 20px;
-	content: '✔';
-	text-align: center;
-}
-.cp_ipcheck .option-input02:checked::after {
-	position: relative;
-	display: block;
-	content: '';
-	-webkit-animation: click-wave 0.65s;
-	        animation: click-wave 0.65s;
-	background:#000000;
-}
+    top: -3px;
+    margin-bottom: 10px;
+    display: block;
+    width: 28px;
+    height: 28px;
+    border: solid 2px transparent;
+    background: rgba(0, 0, 0, .15);
+    border-radius: 50%;
+    transition: all .15s linear;
+  }
+
 br {
     display: block;
     content: "";

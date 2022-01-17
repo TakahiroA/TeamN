@@ -129,7 +129,7 @@ class ProjectPage(LoginRequiredMixin, generic.TemplateView):
     model = Subject,Follow
     template_name = 'task/our_project.html'
     form_class = Subject_all
-    success_url ='/'
+    success_url ='task/follow.html'
 
     def get_context_data(self, **kwargs):
         user = self.request.user
@@ -147,7 +147,7 @@ class ProjectPage(LoginRequiredMixin, generic.TemplateView):
             query = Subject.objects.filter(subject_cd=sub)  
             obj = Follow(subject_cd=query[0].subject_cd,subject_name=query[0].subject_name)
             obj.save()
-        return redirect('task:task_top')
+        return redirect("/")
 
 """ フォロー科目ページ """
 class FollowPage(LoginRequiredMixin, generic.TemplateView):
