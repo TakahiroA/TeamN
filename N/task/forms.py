@@ -1,5 +1,5 @@
 from django import forms
-from .models import Project, ProjectToUsers, Subject,Follow
+from .models import Already, Project, ProjectToUsers, Subject,Follow
 from taskapp.forms import User
 
 """ プロジェクト作成 """
@@ -42,6 +42,22 @@ class ProjectUpdate(forms.ModelForm):
         self.fields['end_date'].widget.input_type="date"
         self.fields['url'].widget.input_type="string"
 
+""" 提出済み更新 """
+class TaskUpdate(forms.ModelForm):
+
+    class Meta:
+        model = Project
+        fields = (
+            'is_already',
+        )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs['class'] = 'form-control'
+        self.fields['is_already'].widget.attrs['hidden'] = 'true'
+    
+
 class Subject_all(forms.ModelForm):
     class Meta:
         model = Subject
@@ -65,7 +81,18 @@ class Follows(forms.ModelForm):
         for field in self.fields.values():
             field.widget.attrs['class'] = 'form-control'
         self.fields['subject_name'].widget.input_type="string"
-     
+
+class Alreadys(forms.ModelForm):
+    class Meta:
+        model = Already
+        fields = (
+            'project_cd','name'
+        )
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs['class'] = 'form-control'
+        self.fields['name'].widget.input_type="string"
 
 """ プロジェクト削除 """
 class ProjectDelete(forms.ModelForm):
