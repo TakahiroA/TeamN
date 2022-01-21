@@ -46,7 +46,7 @@
                     <br>
                     {% for schedule in schedules %}
 
-                    <a class="btn btn-primary" href="{% url 'task:task_top' %}">{{ schedule.summary }}</a>
+                    <a style="background-color: #6b83a7; text-align:center; width: 150px" href="{% url 'task:task_top' %}">{{ schedule.summary }}</a>
                     <br>
                 {% endfor %}
                 </div>

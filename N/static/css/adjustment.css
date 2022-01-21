@@ -89,7 +89,7 @@ table.no_border, .no_border thead, .no_border tbody, .no_border tr, .no_border t
 
 .member_list td, .member_list th{
     padding:5px 10px;
-    border-bottom: solid 1px black;
+    border-bottom: solid 1px rgb(126, 120, 120);
 }
 
 table.no_border, .no_border thead, .no_border tbody, .no_border tr, .no_border th, .no_border td{

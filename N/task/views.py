@@ -100,10 +100,17 @@ class BuildProject(LoginRequiredMixin, generic.CreateView):
         return {'leader': leader,}
 
     def form_valid(self, form):
+        dates = form.cleaned_data.get('start_date')
         end_date = form.cleaned_data.get('end_date')
-        name = form.cleaned_data.get('name')           
-        obj= Schedule(date= end_date, summary= name)
-        obj.save()
+        name = form.cleaned_data.get('name')
+        i = 10
+        
+        for count in range(i):
+            obj= Schedule(date= dates, summary= name)
+            obj.save()
+            dates = dates + datetime.timedelta(days=1)
+            if dates > end_date:
+                break
         return super().form_valid(form)
 
 """ プロジェクト限定 """
