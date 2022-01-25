@@ -7,11 +7,12 @@
     <style>
         table {
             table-layout: fixed;
+            width: 200px;
         }
 
         td > div {
-            height: 100px;
-            overflow: hidden;
+            height: 125px;
+
             white-space: nowrap;
         }
 
@@ -46,9 +47,9 @@
                     <br>
                     {% for schedule in schedules %}
                     {% if day < near %}
-                        <a class="btn" href="{% url 'task:our_project_detail' schedule.pk%}" style="background-color: #FF6600; text-align:center;">{{ schedule.summary }}</a>
+                        <a class="btn" href="{% url 'task:our_project_detail' schedule.pk%}" style="position: relative; left:-13px; background-color: #FF6600; text-align:left;width: 160px;">{{ schedule.summary }}</a>
                     {% else %}
-                        <a class="btn" href="{% url 'task:our_project_detail' schedule.pk%}" style="background-color: #589BFE; text-align:center;">{{ schedule.summary }}</a>
+                        <a class="btn" href="{% url 'task:our_project_detail' schedule.pk%}" style="background-color: #589BFE; text-align:left;">{{ schedule.summary }}</a>
                     {% endif %}
 
                     <br>
