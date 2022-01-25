@@ -4,7 +4,7 @@
 {% block body %}
 <div style="margin:20px;" >
     <div class="simple-border1">
-        <div class="box2">
+        <div class="box2" style="border-width: 0px 0px 7px 0px;  border-color:#589BFE">
             <div style="text-align:center;">
                 <span style="font-size:230%;">{{ project.0.name }}(科目名)</span>
                 <span style="font-size: 230%; margin-left: 18%;">講師名:{{ project.0.leader }}</span> 
@@ -13,16 +13,16 @@
     </div>
     <table class="table">
 
-        <div class="kadai-detail" style="text-align: center; font-size: 150%;">
+        <div class="kadai-detail" style="margin-top: 50px; text-align: center; font-size: 150%;">
             <span> 
                 <div class="box1">{{ project.0.details }}</div>
             </span>
             <div style="text-align:match-parent;">
                 <span>
-                    <p><img src="/static/img/印.png" style="height: 25px; width: 25px;">  <a href="{{ project.0.url }}" target="_blank">{{ project.0.url }}</a></p>
+                    <p style="margin-top: 20px;"><img src="/static/img/印.png" style="height: 25px; width: 25px;"><a href="{{ project.0.url }}" target="_blank">{{ project.0.url }}</a></p>
                 </span>
             </div>
-            <div style="text-align:match-parent;">
+            <div style="text-align:match-parent; margin-top:50px;">
                 <span>
                     <span>提出期限:</span>
                     <span style="color:red;">{{ project.0.end_date }}</span>

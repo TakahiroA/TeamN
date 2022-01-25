@@ -17,9 +17,9 @@
                         {% if lead.is_already == 0 %}
                             <center>
                                 {% if near < lead.end_date %}
-                                    <a class="btn"  href="{% url 'task:our_project_detail' lead.pk %}" style="margin-bottom: 10px; background-color: #F4F8FA; border-color:#C3DDEB; text-align:center; width: 800px;">
+                                    <a class="btn"  href="{% url 'task:our_project_detail' lead.pk %}" style="margin-bottom: 20px; background-color: #F4F8FA; border-color:#C3DDEB; text-align:center; width: 800px;">
                                 {% else %}
-                                    <a class="btn"  href="{% url 'task:our_project_detail' lead.pk %}" style="margin-bottom: 10px; background-color: #F4F8FA; border-color:#FF0000; text-align:center; width: 800px;">
+                                    <a class="btn"  href="{% url 'task:our_project_detail' lead.pk %}" style="margin-bottom: 20px; background-color: #F4F8FA; border-color:#FF0000; text-align:center; width: 800px;">
                                 {% endif %}
                                     <div>
                                     
