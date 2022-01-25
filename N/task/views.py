@@ -44,6 +44,8 @@ class taskTop(LoginRequiredMixin, generic.TemplateView):
         project_user = ProjectToUsers.objects.filter(user_cd=user.pk)
         leader = Project.objects.filter(leader=user.pk, is_delete=0)
         now_data = datetime.date.today()
+        near = datetime.date.today() + datetime.timedelta(days=4)
+        context["near"] = near
         context["td_data"] = now_data
 
 
@@ -72,6 +74,8 @@ class taskTop_out(LoginRequiredMixin, generic.TemplateView):
         project_user = ProjectToUsers.objects.filter(user_cd=user.pk)
         leader = Project.objects.filter(leader=user.pk, is_delete=0)
         now_data = datetime.date.today()
+        near = datetime.date.today() + datetime.timedelta(days=4)
+        context["near"] = near
         context["td_data"] = now_data
 
 

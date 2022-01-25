@@ -16,7 +16,7 @@
             {% if td_data > lead.end_date %}
                 {% if lead.is_already == 0 %}
                 <center>
-                    <a class="project_area" href="{% url 'task:our_project_detail' lead.pk %}" style="margin-bottom: 30px;">
+                    <a class="btn"  href="{% url 'task:our_project_detail' lead.pk %}" style="margin-bottom: 10px; background-color: #F4F8FA; border-color:#FF0000; text-align:center; width: 800px;">
                         <div>
                             
                             <span>{{lead.leader}}</span>
