@@ -37,7 +37,7 @@
             <td class="table-success">
                 {% else %}
             <td>
-                {% endif %}
+            {% endif %}
 
                 <div>
                     {% if month_current.month != day.month %}
@@ -52,12 +52,11 @@
                         {{ schedule.summary }}</a>
                         {% else %}
                         <a class="btn" href="{% url 'task:our_project_detail' schedule.pk%}"
-                            style="position: relative; left:-13px; background-color: #589BFE; text-align:left; width: 160px;">{{
-                            schedule.summary }}</a>
+                            style="position: relative; left:-13px; background-color: #589BFE; text-align:left; width: 160px;">{{schedule.summary}}</a>
                         {% endif %}
 
                         <br>
-                        {% endfor %}
+                    {% endfor %}
                 </div>
             </td>
             {% endfor %}

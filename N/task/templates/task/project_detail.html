@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block title %} TaskMan {% endblock %}
-{% block mainT %} 科目詳細情報 {% endblock %}
+{% block mainT %} 課題詳細情報 {% endblock %}
 {% block body %}
 <div style="margin:20px;">
     <div class="simple-border1">
@@ -38,7 +38,7 @@
     <center>
         <a href="{% url 'task:task_top' %}" class="btn btn-primary">戻る</a>
         <a href="{% url 'task:our_project_update' project.0.pk %}" class="btn btn-primary ">変更</a>
-        <a href="{% url 'task:our_project_delete' project.0.pk %}" class="delete-btn btn btn-primary">削除</a>
+        <a href="{% url 'task:our_project_delete' project.0.pk %}" class="delete-btn btn btn-primary" style="border-color: red;">削除</a>
         <a href="{% url 'task:task_update' project.0.pk %}" class="btn btn-primary ">提出済みに変更</a>
     </center>
 </div>

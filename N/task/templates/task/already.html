@@ -10,8 +10,8 @@
     {% if leader != None %}
     {% for lead in leader %}
     {% if lead.is_already == 1 %}
-    <div class="btn" href="{% url 'task:our_project_detail' lead.pk %}"
-        style="margin-bottom: 20px; background-color: #F4F8FA; border-color:#C3DDEB; text-align:center; width: 800px;">
+    <div>
+    <a class="btn" href="{% url 'task:our_project_detail' lead.pk %}" style="margin-bottom: 20px; background-color: #F4F8FA; border-color:#C3DDEB; text-align:center; width: 800px;">
         <span>{{lead.leader}}</span>
         【{{lead.name}}】
 
@@ -22,6 +22,7 @@
         {% if lead.end_date != None %}
         <span>期限 : {{lead.end_date}}</span>
         {% endif %}
+    </a>
     </div>
     {% endif %}
     {% endfor %}

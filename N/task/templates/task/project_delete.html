@@ -55,7 +55,7 @@
         {% csrf_token %}
         <br>
         <a href="{% url 'task:our_project_detail' project.0.pk %}" class="btn btn-primary">戻る</a>
-        <button type="submit" class="delete-btn btn btn-success">削除</button>
+        <button type="submit" class="delete-btn btn btn-success" style="border-color: red;">削除</button>
     </form>
 </div>
 {% endblock %}
