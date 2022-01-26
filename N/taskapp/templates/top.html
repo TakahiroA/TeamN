@@ -4,61 +4,65 @@
 {% block mainL %}UserID : {{ user.get_username }}{% endblock %}
 {% block auth %}<a class="nav-link" href="../logout/">ログアウト</a>{% endblock %}
 {% block content %}
-    <style>
-        table {
-            table-layout: fixed;
+<style>
+    table {
+        table-layout: fixed;
 
-        }
+    }
 
-        td > div {
-            height: 125px;
+    td>div {
+        height: 125px;
 
-            white-space: nowrap;
-        }
-
-    </style>
-    <a href="{% url 'taskapp:month_with_schedule' month_previous.year month_previous.month %}">＜</a>
-    {{ month_current | date:"Y年m月" }}
-    <a href="{% url 'taskapp:month_with_schedule' month_next.year month_next.month %}">＞</a>
-    <table class="table table-bordered">
-        <thead>
+        white-space: nowrap;
+    }
+</style>
+<a href="{% url 'taskapp:month_with_schedule' month_previous.year month_previous.month %}">＜</a>
+{{ month_current | date:"Y年m月" }}
+<a href="{% url 'taskapp:month_with_schedule' month_next.year month_next.month %}">＞</a>
+<table class="table table-bordered">
+    <thead>
         <tr>
             {% for w in week_names %}
-                <th class="border-dark"><div class="text-center">{{ w }}</div></th>
+            <th class="border-dark">
+                <div class="text-center">{{ w }}</div>
+            </th>
             {% endfor %}
         </tr>
-        </thead>
-        <tbody>
+    </thead>
+    <tbody>
         {% for week_day_schedles in month_day_schedules %}
-            <tr>
-                {% for day, schedules in week_day_schedles.items %}
-                    {% if now == day %}
-                        <td class="table-success">
-                            {% else %}
-                        <td>
-                    {% endif %}
+        <tr>
+            {% for day, schedules in week_day_schedles.items %}
+            {% if now == day %}
+            <td class="table-success">
+                {% else %}
+            <td>
+                {% endif %}
 
                 <div>
                     {% if month_current.month != day.month %}
-                        {{ day | date:"m/d" }}
+                    {{ day | date:"m/d" }}
                     {% else %}
-                        {{ day.day }}
+                    {{ day.day }}
                     {% endif %}
                     <br>
                     {% for schedule in schedules %}
-                    {% if day < near %}
-                        <a class="btn" href="{% url 'task:our_project_detail' schedule.pk%}" style="position: relative; left:-13px; background-color: #FF6600; text-align:left; width: 160px;">{{ schedule.summary }}</a>
-                    {% else %}
-                        <a class="btn" href="{% url 'task:our_project_detail' schedule.pk%}" style="position: relative; left:-13px; background-color: #589BFE; text-align:left; width: 160px;">{{ schedule.summary }}</a>
-                    {% endif %}
+                    {% if day < near %} <a class="btn" href="{% url 'task:our_project_detail' schedule.pk%}"
+                        style="position: relative; left:-13px; background-color: #FF6600; text-align:left; width: 160px;">
+                        {{ schedule.summary }}</a>
+                        {% else %}
+                        <a class="btn" href="{% url 'task:our_project_detail' schedule.pk%}"
+                            style="position: relative; left:-13px; background-color: #589BFE; text-align:left; width: 160px;">{{
+                            schedule.summary }}</a>
+                        {% endif %}
 
-                    <br>
-                {% endfor %}
+                        <br>
+                        {% endfor %}
                 </div>
-                </td>
-                {% endfor %}
-            </tr>
+            </td>
+            {% endfor %}
+        </tr>
         {% endfor %}
-        </tbody>
-    </table>
+    </tbody>
+</table>
 {% endblock %}

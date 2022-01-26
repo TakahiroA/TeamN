@@ -1,28 +1,26 @@
 {% extends "base.html" %}
 {% block title %} TaskMan {% endblock %}
-{% block mainT %}  科目一覧 {% endblock %}
+{% block mainT %} 科目一覧 {% endblock %}
 {% block body %}
-<div style="padding:20px 200px 0px 200px;" class="form-group">
+<div style="padding:20px 200px 0px 200px;">
     <center>
-        <h2 style="margin-bottom: 20px;"><font color="#589BFE">フォロー済み科目</font></h2>
+        <h2 style="margin-bottom: 20px;">
+            <font color="#589BFE">フォロー済み科目</font>
+        </h2>
         {% if follow != None %}
-        <form action="" method="POST" class="project_area">
+        <form action="" method="POST">
             {% csrf_token %}
             {{ follow.non_field_errors }}
             {% for field in follow %}
-            <div style="margin-bottom: 25px;">
+            <div class="btn"
+                style="margin-bottom: 20px; background-color: #F4F8FA; border-color:#C3DDEB; text-align:center; width: 800px;">
                 {{ field.subject_name }}　　　　／　　　　{{ user.get_username }}
             </div>
-            {% endfor %} 
+            {% endfor %}
         </form>
         {% else %}
-                <h4>科目がありません</h4>
+        <h4>科目がありません</h4>
         {% endif %}
     </center>
 </div>
-
-
-
-
-
 {% endblock %}

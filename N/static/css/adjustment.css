@@ -168,10 +168,16 @@ ul, li {
 
 
 .ECM_CheckboxInput {
-    display: flex;
+    display: block;
+    width: 10px;
+    height: 10px;
+    top:-29px;
+    right:10px;
     align-items: center;
-    text-align: right
-    ;
+    text-align: right;
+
+    position: relative;
+
   }
   .ECM_CheckboxInput-Input {
     margin: 0;
@@ -185,10 +191,10 @@ ul, li {
   }
   .ECM_CheckboxInput-Input:checked + .ECM_CheckboxInput-DummyInput::before {
     content: "";
-    display: block;
+    display: flex;
     position: absolute;
-    top: 52%;
-    left: 50%;
+    top: 35%;
+    left: 60%;
     width: 35%;
     height: 4px;
     border-radius: 2px;
@@ -200,8 +206,8 @@ ul, li {
     content: "";
     display: block;
     position: absolute;
-    top: 52%;
-    left: 50%;
+    top: 35%;
+    left: 60%;
     width: 70%;
     height: 4px;
     border-radius: 2px;
@@ -212,11 +218,11 @@ ul, li {
   
   .ECM_CheckboxInput-DummyInput {
     position: relative;
-    top: -3px;
-    margin-bottom: 10px;
+    top: -8px;
+
     display: block;
-    width: 28px;
-    height: 28px;
+    width: 23px;
+    height: 23px;
     border: solid 2px transparent;
     background: rgba(0, 0, 0, .15);
     border-radius: 50%;

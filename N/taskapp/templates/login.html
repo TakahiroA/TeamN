@@ -2,34 +2,36 @@
 {% block body %}
 
 <body style="background-color:#F4F8FA;">
-<div style='padding-top: 50px;'>
-    <div style="text-align:left; margin-left: 150px; margin-bottom: 50px;">
-        <img src="/static/img/タイトル.png" width="30%" height="50%">
-    </div>
+    <div style='padding-top: 50px;'>
+        <div style="text-align:left; margin-left: 150px; margin-bottom: 50px;">
+            <img src="/static/img/タイトル.png" width="30%" height="50%">
+        </div>
 
-    <form action="" method="POST">
-        <div class="col-md-6 offset-md-3">
-            
-           
-            <div class="form-group">
-                {{ form.non_field_errors }}
-                {% for field in form %}
+        <form action="" method="POST">
+            <div class="col-md-6 offset-md-3">
+
+
+                <div class="form-group">
+                    {{ form.non_field_errors }}
+                    {% for field in form %}
                     {{ field }}
                     {{ field.errors }}
                     <p style="margin-top:40px"></p>
-                {% endfor %}
+                    {% endfor %}
+                </div>
+                <div class="authElement">
+                    <a><button type="submit" class="btn"
+                            style="background-color: #589BFE; text-align:center; width: 150px">ログイン</button>
+                        <input type="hidden" name="next" value="{{ next }}" />
+                        {% csrf_token %}
+                    </a>
+                    <p></p>
+                    <a class="btn" href="/registration/"
+                        style="background-color: #C3DDEB; text-align:center; width: 150px;">新規登録</a>
+                </div>
             </div>
-            <div class="authElement">
-                <a><button type="submit" class="btn" style="background-color: #589BFE; text-align:center; width: 150px">ログイン</button>
-                    <input type="hidden" name="next" value="{{ next }}" />
-                    {% csrf_token %}
-                </a>
-                <p></p>
-                <a class="btn" href="/registration/" style="background-color: #C3DDEB; text-align:center; width: 150px;">新規登録</a>
-            </div>
-        </div>
-    </form>
-</div>
+        </form>
+    </div>
 
 </body>
 {% endblock %}

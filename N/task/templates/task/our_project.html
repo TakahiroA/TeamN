@@ -1,28 +1,35 @@
 {% extends "base.html" %}
 {% block title %} TaskMan {% endblock %}
-{% block mainT %}  科目追加 {% endblock %}
+{% block mainT %} 科目追加 {% endblock %}
 {% block body %}
 <div style="padding:20px 200px 0px 200px;" class="form-group">
     <center>
-    <h2 style="margin-bottom: 20px;"><font color="#589BFE">検索結果</font></h2>
-    {% if subject != None %}
-    <form action="" method="POST">
-        {% csrf_token %}
-        {{ subject.non_field_errors }}
-        {% for field in subject %}
-            <a class="project_area">
+        <h2 style="margin-bottom: 20px;">
+            <font color="#589BFE">検索結果</font>
+        </h2>
+        {% if subject != None %}
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{ subject.non_field_errors }}
+            {% for field in subject %}
+            <div class="btn"
+                style="margin-bottom: 20px; background-color: #F4F8FA; border-color:#C3DDEB; text-align:center; width: 800px; top:50px;">
                 <div style="text-align: center;">
-                    {{ field.subject_name }}　　　　／　　　　{{ user.get_username }}<label class="ECM_CheckboxInput" style="float:right"><input class="ECM_CheckboxInput-Input" type="checkbox"name="subjects" value="{{ field.subject_cd }}" style="margin-bottom: 20px;"><span class="ECM_CheckboxInput-DummyInput"></span></label>
+                    {{ field.subject_name }}　　　　／　　　　{{ user.get_username }}<label class="ECM_CheckboxInput"
+                        style="float:right"><input class="ECM_CheckboxInput-Input" type="checkbox" name="subjects"
+                            value="{{ field.subject_cd }}" style="margin-bottom: 20px;">
+                        <div class="ECM_CheckboxInput-DummyInput"></div>
+                    </label>
                 </div>
-            </a>
-        {% endfor %} 
-        
-        <button type="submit">フォロー</button>
-    <button><a href="/">戻る</a></button>
-    </form>
-    {% else %}
-            <h4>科目がありません</h4>
-    {% endif %}
+            </div>
+            {% endfor %}
+            <br>
+            <button type="submit">フォロー</button>
+            <button><a href="/">戻る</a></button>
+        </form>
+        {% else %}
+        <h4>科目がありません</h4>
+        {% endif %}
     </center>
 </div>
 
