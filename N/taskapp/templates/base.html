@@ -8,43 +8,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
     <link rel="shortcut icon" type="image/x-icon" href="{% static 'img/デフォルト.png' %}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
         integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <title>{% block title %}{% endblock %}</title>
-
-    <link href="{% static 'bootstrap/dist/css/bootstrap.css' %}" rel="stylesheet">
-    <link href="{% static 'bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet">
-    <link href="{% static 'bootstrap/dist/css/bootstrap-grid.css' %}" rel="stylesheet">
-    <link href="{% static 'bootstrap/dist/css/bootstrap-grid.min.css' %}" rel="stylesheet">
-    <link href="{% static 'bootstrap/dist/css/bootstrap-reboot.css' %}" rel="stylesheet">
-    <link href="{% static 'bootstrap/dist/css/bootstrap-reboot.min.css' %}" rel="stylesheet">
-    <link href="{% static 'bootstrap/docs/4.0/examples/dashboard/dashboard.css' %}" rel="stylesheet">
     <link href="{% static 'css/modal.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'css/adjustment.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'css/navibar.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'css/slider.css' %}" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
-    <script src="{% static 'bootstrap/assets/js/vendor/anchor.min.js' %}"></script>
-    <script src="{% static 'bootstrap/assets/js/vendor/clipboard.min.js' %}"></script>
-    <script src="{% static 'bootstrap/assets/js/vendor/holder.min.js' %}"></script>
-    <script src="{% static 'bootstrap/assets/js/vendor/popper.min.js' %}"></script>
-    <script src="{% static 'bootstrap/dist/js/bootstrap.bundle.js' %}"></script>
-    <script src="{% static 'bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
-    <script src="{% static 'bootstrap/dist/js/bootstrap.js' %}"></script>
-    <script src="{% static 'bootstrap/dist/js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'bootstrap/js/dist/alert.js' %}"></script>
-    <script src="{% static 'bootstrap/js/dist/button.js' %}"></script>
-    <script src="{% static 'bootstrap/js/dist/carousel.js' %}"></script>
-    <script src="{% static 'bootstrap/js/dist/collapse.js' %}"></script>
-    <script src="{% static 'bootstrap/js/dist/dropdown.js' %}"></script>
-    <script src="{% static 'bootstrap/js/dist/index.js' %}"></script>
-    <script src="{% static 'bootstrap/js/dist/modal.js' %}"></script>
-    <script src="{% static 'bootstrap/js/dist/scrollspy.js' %}"></script>
-    <script src="{% static 'bootstrap/js/dist/tab.js' %}"></script>
-    <script src="{% static 'bootstrap/js/dist/tooltip.js' %}"></script>
-    <script src="{% static 'bootstrap/js/dist/util.js' %}"></script>
     <script src="{% static 'js/ajax.js' %}"></script>
     <script src="{% static 'js/modal.js' %}"></script>
     <script src="{% static 'js/masta.js' %}"></script>
@@ -56,7 +28,7 @@
     <nav class="navbar navbar-dark sticky-top flex-md-nowrap p-0" style="background-color: rgb(244,248,250);">
         <a class="navbar-brand col-sm-3 col-md-2 mr-0 barbtn text-dark" style="background-color: rgb(195,221,235);"
             href="">{{ user.last_name }}　{{ user.first_name }}　(R4)</a>
-        <div class="form-control form-control-dark w-100 text-dark">{% block mainT %}{% endblock %}</div>
+        <div style="margin-right: 6%;">{% block mainT %}{% endblock %}</div>
         <div class="btn-group">
             <div class="btn dropdown-toggle naviDrop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 {% if user.is_authenticated %}
@@ -110,9 +82,6 @@
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
         integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
-        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
         crossorigin="anonymous"></script>
     {% block extrajs %}{% endblock %}
 </body>

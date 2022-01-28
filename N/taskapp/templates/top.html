@@ -23,7 +23,7 @@
     <thead>
         <tr>
             {% for w in week_names %}
-            <th class="border-dark">
+            <th>
                 <div class="text-center">{{ w }}</div>
             </th>
             {% endfor %}
@@ -47,7 +47,8 @@
                     {% endif %}
                     <br>
                     {% for schedule in schedules %}
-                    {% if day < near %} <a class="btn" href="{% url 'task:our_project_detail' schedule.pk%}"
+                    {% if day < near %} 
+                    <a class="btn" href="{% url 'task:our_project_detail' schedule.pk%}"
                         style="position: relative; left:-13px; background-color: #FF6600; text-align:left; width: 160px;">
                         {{ schedule.summary }}</a>
                         {% else %}

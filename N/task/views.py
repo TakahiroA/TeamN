@@ -318,7 +318,7 @@ class ProjectDelete(ProjectLeaderOnlyMixin, generic.UpdateView):
         return {'is_delete': True,}
 
     def get_success_url(self):
-        return resolve_url('task:task_top')
+        return resolve_url('task:already')
 
 """ プロジェクトメンバー追加 """
 
