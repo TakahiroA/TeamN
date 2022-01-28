@@ -13,7 +13,7 @@
             {{ follow.non_field_errors }}
             {% for field in follow %}
             <div class="btn" style="margin-bottom: 20px; background-color: #F4F8FA; border-color:#C3DDEB; text-align:center; width: 800px;">
-                {{ field.subject_name }}　　　　／　　　　{{ user.get_username }}
+                {{ field.subject_name }}　　　　／　　　　{{ field.subject_koushi }}
             </div>
             {% endfor %}
         </form>

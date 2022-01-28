@@ -87,6 +87,12 @@ class Subject(models.Model):
         verbose_name='科目名'
     )
 
+    subject_koushi = models.CharField(
+        max_length=25,
+        null=True,
+        blank=True,
+        verbose_name='講師名'
+    )
 class Follow(models.Model):
     subject_cd= models.AutoField(
         primary_key=True
@@ -97,6 +103,13 @@ class Follow(models.Model):
         null=True,
         blank=True,
         verbose_name='科目名'
+    )
+
+    subject_koushi = models.CharField(
+        max_length=25,
+        null=True,
+        blank=True,
+        verbose_name='講師名'
     )
 
 class Already(models.Model):
